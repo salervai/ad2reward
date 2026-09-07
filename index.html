@@ -255,4 +255,109 @@
           class="status-box info-box"
         ></div>
 
-        <div
+        </div>
+
+<script>
+let adsWatched = 0;
+const totalAds = 3;
+let isWatching = false;
+
+const unlockBtn = document.getElementById("unlockBtn");
+const progressBox = document.getElementById("progressBox");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+const infoBox = document.getElementById("infoBox");
+
+function showInfo(message, type = "info") {
+  infoBox.style.display = "block";
+  infoBox.className =
+    "status-box " +
+    (type === "error"
+      ? "error-box"
+      : type === "success"
+      ? "success-box"
+      : "info-box");
+
+  infoBox.textContent = message;
+}
+
+function updateProgress() {
+  progressBox.style.display = "block";
+
+  progressText.textContent =
+    "বিজ্ঞাপন: " + adsWatched + " / " + totalAds;
+
+  progressBar.style.width =
+    (adsWatched / totalAds * 100) + "%";
+}
+
+async function startUnlock() {
+
+  if (isWatching) return;
+
+  isWatching = true;
+  unlockBtn.disabled = true;
+
+  showInfo(
+    "বিজ্ঞাপন " +
+    (adsWatched + 1) +
+    " / " +
+    totalAds +
+    " শুরু হচ্ছে..."
+  );
+
+  try {
+
+    if (typeof show_11748430 !== "function") {
+      throw new Error("Monetag SDK not loaded");
+    }
+
+    await show_11748430();
+
+    adsWatched++;
+
+    updateProgress();
+
+    if (adsWatched < totalAds) {
+
+      showInfo(
+        "✅ বিজ্ঞাপন সম্পূর্ণ হয়েছে। আরও " +
+        (totalAds - adsWatched) +
+        "টি বিজ্ঞাপন বাকি।"
+      );
+
+      unlockBtn.disabled = false;
+
+    } else {
+
+      showInfo(
+        "🎉 ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণ হয়েছে!",
+        "success"
+      );
+
+      unlockBtn.textContent =
+        "✅ বিজ্ঞাপন সম্পূর্ণ";
+
+    }
+
+  } catch (error) {
+
+    console.error("Monetag error:", error);
+
+    showInfo(
+      "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি। আবার চেষ্টা করুন।",
+      "error"
+    );
+
+    unlockBtn.disabled = false;
+
+  } finally {
+
+    isWatching = false;
+
+  }
+}
+</script>
+
+</body>
+</html>
