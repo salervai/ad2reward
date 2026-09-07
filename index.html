@@ -11,7 +11,13 @@
 
   <!-- Monetag SDK -->
   <script src="//libtl.com/sdk.js" data-zone="11748430"></script>
-
+<script>
+window.addEventListener("load", function () {
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.ready();
+  }
+});
+</script>
   <style>
     * {
       box-sizing: border-box;
