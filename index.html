@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Viral Hub</title>
+  <title>Ad2Reward - Viral Hub</title>
 
   <!-- Telegram Mini App -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <!-- Monetag Ad Tag -->
+  <!-- Monetag SDK -->
   <script src="//libtl.com/sdk.js" data-zone="11748430"></script>
 
   <style>
@@ -23,13 +23,14 @@
       font-family: Arial, sans-serif;
       background: #f4f6fb;
       color: #111827;
+      min-height: 100vh;
     }
 
     .header {
       background: linear-gradient(135deg, #1677ff, #6c4cff);
-      color: white;
-      padding: 22px 18px;
-      border-radius: 0 0 24px 24px;
+      color: #fff;
+      padding: 24px 18px;
+      border-radius: 0 0 26px 26px;
     }
 
     .header h1 {
@@ -39,11 +40,14 @@
 
     .header p {
       font-size: 14px;
-      opacity: 0.9;
+      opacity: .92;
+      line-height: 1.5;
     }
 
     .container {
       padding: 18px;
+      max-width: 600px;
+      margin: auto;
     }
 
     .section-title {
@@ -53,11 +57,11 @@
     }
 
     .video-card {
-      background: white;
+      background: #fff;
       border-radius: 18px;
       overflow: hidden;
       margin-bottom: 18px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 18px rgba(0,0,0,.08);
     }
 
     .thumbnail {
@@ -69,7 +73,7 @@
     }
 
     .video-info {
-      padding: 15px;
+      padding: 16px;
     }
 
     .badge {
@@ -83,7 +87,7 @@
     }
 
     .video-title {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: bold;
       margin-bottom: 8px;
     }
@@ -91,29 +95,29 @@
     .video-description {
       font-size: 13px;
       color: #6b7280;
-      margin-bottom: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
+      margin-bottom: 15px;
     }
 
     .unlock-btn {
       width: 100%;
-      border: none;
-      padding: 13px;
+      border: 0;
+      padding: 14px;
       border-radius: 12px;
       background: #1677ff;
-      color: white;
+      color: #fff;
       font-size: 15px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .unlock-btn:disabled {
-      opacity: 0.65;
+      opacity: .65;
       cursor: not-allowed;
     }
 
     .unlock-btn:active {
-      transform: scale(0.98);
+      transform: scale(.98);
     }
 
     .progress-box {
@@ -128,6 +132,7 @@
       font-size: 14px;
       font-weight: bold;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     .progress-bg {
@@ -142,18 +147,39 @@
       width: 0%;
       height: 100%;
       background: #1677ff;
-      transition: width 0.3s ease;
+      transition: width .3s ease;
+    }
+
+    .status-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .success-box {
-      display: none;
-      margin-top: 15px;
-      padding: 14px;
       background: #ecfdf5;
       color: #047857;
-      border-radius: 12px;
+    }
+
+    .error-box {
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .info-box {
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .footer {
       text-align: center;
-      font-weight: bold;
+      color: #9ca3af;
+      font-size: 12px;
+      padding: 10px 0 25px;
     }
   </style>
 </head>
@@ -161,8 +187,8 @@
 <body>
 
   <div class="header">
-    <h1>🔥 Viral Hub</h1>
-    <p>Trending videos দেখতে নিচের ভিডিওটি নির্বাচন করুন</p>
+    <h1>🔥 Ad2Reward</h1>
+    <p>Rewarded বিজ্ঞাপন দেখে Trending ভিডিও আনলক করুন</p>
   </div>
 
   <div class="container">
@@ -190,205 +216,43 @@
         </div>
 
         <div class="video-description">
-          ভিডিওটি দেখতে প্রথমে ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণভাবে দেখতে হবে।
+          ভিডিওটি দেখতে আগে ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণভাবে
+          দেখতে হবে। বিজ্ঞাপন সম্পূর্ণ হলে ভিডিও আনলক করার
+          পরবর্তী ধাপ দেখানো হবে।
         </div>
 
         <button
+          id="unlockBtn"
           class="unlock-btn"
           onclick="startUnlock()"
         >
           🔓 ভিডিও আনলক করুন
         </button>
 
-        <div class="progress-box" id="progressBox">
+        <div
+          id="progressBox"
+          class="progress-box"
+        >
 
           <div
-            class="progress-text"
             id="progressText"
+            class="progress-text"
           >
             বিজ্ঞাপন: 0 / 3
           </div>
 
           <div class="progress-bg">
             <div
-              class="progress-bar"
               id="progressBar"
+              class="progress-bar"
             ></div>
           </div>
 
         </div>
 
         <div
-          class="success-box"
-          id="successBox"
-        >
-          🎉 ৩টি বিজ্ঞাপন সম্পূর্ণ হয়েছে!
-        </div>
+          id="infoBox"
+          class="status-box info-box"
+        ></div>
 
-      </div>
-    </div>
-  </div>
-
-
-  <script>
-
-    /* Telegram */
-    const tg = window.Telegram.WebApp;
-
-    tg.ready();
-    tg.expand();
-
-
-    /* Unlock Settings */
-    let adsWatched = 0;
-
-    const requiredAds = 3;
-
-
-    /* Start / Watch Ad */
-    async function startUnlock() {
-
-      const btn = document.querySelector(".unlock-btn");
-
-      const progressBox =
-        document.getElementById("progressBox");
-
-      const progressText =
-        document.getElementById("progressText");
-
-      progressBox.style.display = "block";
-
-
-      /* Already completed */
-      if (adsWatched >= requiredAds) {
-        return;
-      }
-
-
-      /* Disable button while ad is running */
-      btn.disabled = true;
-
-      btn.innerText =
-        "⏳ বিজ্ঞাপন " +
-        (adsWatched + 1) +
-        "/" +
-        requiredAds +
-        " চলছে...";
-
-
-      try {
-
-        /* Check Monetag function */
-        if (typeof show_11748430 !== "function") {
-
-          throw new Error(
-            "Monetag Rewarded Ad function পাওয়া যায়নি"
-          );
-
-        }
-
-
-        /*
-         * Monetag Rewarded Interstitial
-         *
-         * Ad completion হলে Promise resolve হবে
-         */
-        await show_11748430();
-
-
-        /* Count completed ad */
-        adsWatched++;
-
-
-        /* Update progress */
-        updateProgress();
-
-
-        /* More ads required */
-        if (adsWatched < requiredAds) {
-
-          btn.disabled = false;
-
-          btn.innerText =
-            "▶️ বিজ্ঞাপন " +
-            (adsWatched + 1) +
-            "/" +
-            requiredAds +
-            " দেখুন";
-
-        }
-
-
-        /* All ads completed */
-        else {
-
-          btn.disabled = true;
-
-          btn.innerText =
-            "✅ ৩টি বিজ্ঞাপন সম্পূর্ণ";
-
-          document.getElementById(
-            "successBox"
-          ).style.display = "block";
-
-          alert(
-            "🎉 অভিনন্দন!\n\n" +
-            "৩টি Rewarded বিজ্ঞাপন সম্পূর্ণ হয়েছে।"
-          );
-
-        }
-
-      }
-
-
-      catch (error) {
-
-        console.log(
-          "Rewarded Ad Error:",
-          error
-        );
-
-
-        btn.disabled = false;
-
-        btn.innerText =
-          "🔄 আবার বিজ্ঞাপন দেখুন";
-
-
-        alert(
-          "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি।\n\n" +
-          "আবার চেষ্টা করুন।"
-        );
-
-      }
-
-    }
-
-
-    /* Progress Update */
-    function updateProgress() {
-
-      const percent =
-        (adsWatched / requiredAds) * 100;
-
-
-      document.getElementById(
-        "progressBar"
-      ).style.width =
-        percent + "%";
-
-
-      document.getElementById(
-        "progressText"
-      ).innerText =
-        "বিজ্ঞাপন: " +
-        adsWatched +
-        " / " +
-        requiredAds;
-
-    }
-
-  </script>
-
-</body>
-</html>
+        <div
