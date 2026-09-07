@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Ad2Reward</title>
 
@@ -17,284 +13,104 @@
   <script
     src="https://libtl.com/sdk.js"
     data-zone="11748430"
-  ></script>
+    data-sdk="show_11748430">
+  </script>
 
   <style>
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6fb;
+      color: #111827;
       min-height: 100vh;
-
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
-
-      background:
-        linear-gradient(
-          135deg,
-          #07111f 0%,
-          #0d1b2f 50%,
-          #111827 100%
-        );
-
-      color: #ffffff;
-    }
-
-    .app {
-      width: 100%;
-      max-width: 520px;
-      margin: auto;
-      padding: 18px;
     }
 
     .header {
-      text-align: center;
-      padding: 20px 10px 15px;
+      background: linear-gradient(135deg, #1677ff, #6c4cff);
+      color: white;
+      padding: 24px 18px;
+      border-radius: 0 0 24px 24px;
     }
 
-    .logo {
-      width: 72px;
-      height: 72px;
-
-      margin: 0 auto 12px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 22px;
-
-      font-size: 36px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #7c3aed
-        );
-
-      box-shadow:
-        0 10px 35px rgba(37, 99, 235, 0.35);
+    .header h1 {
+      font-size: 26px;
+      margin-bottom: 7px;
     }
 
-    .title {
-      margin: 0;
-
-      font-size: 28px;
-      font-weight: 800;
-    }
-
-    .subtitle {
-      margin: 8px 0 0;
-
-      color: #9ca3af;
+    .header p {
       font-size: 14px;
+      opacity: 0.92;
     }
 
-    .card {
-      margin-top: 15px;
-
+    .container {
       padding: 18px;
-
-      border-radius: 22px;
-
-      background:
-        rgba(17, 24, 39, 0.88);
-
-      border: 1px solid rgba(255, 255, 255, 0.08);
-
-      box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.25);
-
-      backdrop-filter: blur(12px);
     }
 
-    .video-box {
-      width: 100%;
-      aspect-ratio: 16 / 9;
+    .section-title {
+      font-size: 19px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
 
-      border-radius: 17px;
-
+    .video-card {
+      background: white;
+      border-radius: 18px;
       overflow: hidden;
-
-      background:
-        linear-gradient(
-          135deg,
-          #111827,
-          #1f2937
-        );
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      position: relative;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
     }
 
-    .video-icon {
-      font-size: 54px;
-      opacity: 0.9;
+    .thumbnail {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
     }
 
-    .video-label {
-      position: absolute;
+    .video-info {
+      padding: 16px;
+    }
 
-      left: 12px;
-      bottom: 12px;
-
+    .badge {
+      display: inline-block;
+      background: #eef4ff;
+      color: #1677ff;
       padding: 6px 10px;
-
-      border-radius: 9px;
-
-      background: rgba(0, 0, 0, 0.55);
-
+      border-radius: 20px;
       font-size: 12px;
+      margin-bottom: 10px;
     }
 
     .video-title {
-      margin: 16px 0 6px;
-
-      font-size: 20px;
-      font-weight: 750;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
 
     .video-description {
-      margin: 0;
-
-      color: #9ca3af;
-
-      font-size: 14px;
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 15px;
       line-height: 1.5;
-    }
-
-    .progress-box {
-      display: none;
-
-      margin-top: 18px;
-
-      padding: 15px;
-
-      border-radius: 15px;
-
-      background: rgba(255, 255, 255, 0.045);
-    }
-
-    .progress-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      margin-bottom: 9px;
-    }
-
-    .progress-title {
-      font-size: 13px;
-      color: #d1d5db;
-    }
-
-    .progress-number {
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 9px;
-
-      overflow: hidden;
-
-      border-radius: 99px;
-
-      background: #1f2937;
-    }
-
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-
-      border-radius: 99px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #2563eb,
-          #8b5cf6
-        );
-
-      transition: width 0.4s ease;
-    }
-
-    .status-box {
-      display: none;
-
-      margin-top: 14px;
-
-      padding: 13px 14px;
-
-      border-radius: 13px;
-
-      font-size: 13px;
-
-      line-height: 1.5;
-    }
-
-    .info-box {
-      background: rgba(37, 99, 235, 0.12);
-      border: 1px solid rgba(37, 99, 235, 0.25);
-      color: #bfdbfe;
-    }
-
-    .success-box {
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.25);
-      color: #bbf7d0;
-    }
-
-    .error-box {
-      background: rgba(239, 68, 68, 0.12);
-      border: 1px solid rgba(239, 68, 68, 0.25);
-      color: #fecaca;
     }
 
     .unlock-btn {
       width: 100%;
-
-      margin-top: 18px;
-
-      padding: 16px;
-
-      border: 0;
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #2563eb,
-          #7c3aed
-        );
-
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      background: #1677ff;
       color: white;
-
-      font-size: 16px;
-      font-weight: 800;
-
+      font-size: 15px;
+      font-weight: bold;
       cursor: pointer;
-
-      box-shadow:
-        0 10px 25px rgba(37, 99, 235, 0.25);
-
-      transition:
-        transform 0.15s ease,
-        opacity 0.15s ease;
+      transition: 0.2s;
     }
 
     .unlock-btn:active {
@@ -302,246 +118,218 @@
     }
 
     .unlock-btn:disabled {
-      opacity: 0.55;
+      opacity: 0.65;
       cursor: not-allowed;
-      box-shadow: none;
     }
 
-    .unlock-btn.ready {
-      background:
-        linear-gradient(
-          135deg,
-          #16a34a,
-          #059669
-        );
-    }
-
-    .requirements {
-      margin-top: 18px;
-
+    .progress-box {
+      display: none;
+      margin-top: 15px;
       padding: 15px;
-
-      border-radius: 15px;
-
-      background: rgba(255, 255, 255, 0.035);
+      background: #f8fafc;
+      border-radius: 12px;
     }
 
-    .requirements-title {
+    .progress-text {
       font-size: 14px;
-      font-weight: 700;
-
+      font-weight: bold;
       margin-bottom: 10px;
-    }
-
-    .requirement {
-      display: flex;
-      align-items: center;
-
-      gap: 9px;
-
-      margin-top: 8px;
-
-      color: #9ca3af;
-
-      font-size: 13px;
-    }
-
-    .footer {
       text-align: center;
-
-      padding: 20px 10px 10px;
-
-      color: #6b7280;
-
-      font-size: 11px;
     }
 
-    .loading {
-      display: inline-block;
-
-      width: 15px;
-      height: 15px;
-
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top-color: white;
-
-      border-radius: 50%;
-
-      animation: spin 0.8s linear infinite;
-
-      vertical-align: -3px;
-
-      margin-right: 6px;
+    .progress-bg {
+      width: 100%;
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: #1677ff;
+      transition: width 0.3s ease;
+    }
+
+    .status-box {
+      display: none;
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: center;
+      white-space: pre-wrap;
+    }
+
+    .status-info {
+      display: block;
+      background: #eef4ff;
+      color: #1d4ed8;
+    }
+
+    .status-success {
+      display: block;
+      background: #ecfdf5;
+      color: #047857;
+    }
+
+    .status-error {
+      display: block;
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .success-box {
+      display: none;
+      margin-top: 15px;
+      padding: 14px;
+      background: #ecfdf5;
+      color: #047857;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .note-box {
+      margin-top: 14px;
+      padding: 12px;
+      background: #fff7ed;
+      color: #9a3412;
+      border-radius: 12px;
+      font-size: 12px;
+      line-height: 1.5;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="app">
+  <div class="header">
+    <h1>🔥 Ad2Reward</h1>
+    <p>Rewarded বিজ্ঞাপন দেখে ভিডিও আনলক করুন</p>
+  </div>
 
-    <!-- Header -->
-    <div class="header">
+  <div class="container">
 
-      <div class="logo">
-        🎬
-      </div>
-
-      <h1 class="title">
-        Ad2Reward
-      </h1>
-
-      <p class="subtitle">
-        Watch ads and unlock your video
-      </p>
-
+    <div class="section-title">
+      🎬 আজকের Viral Video
     </div>
 
+    <div class="video-card">
 
-    <!-- Main Card -->
-    <div class="card">
-
-      <!-- Video Preview -->
-      <div class="video-box">
-
-        <div class="video-icon">
-          ▶️
-        </div>
-
-        <div class="video-label">
-          🔒 Locked Video
-        </div>
-
-      </div>
-
-
-      <h2 class="video-title">
-        🔥 Viral Video
-      </h2>
-
-      <p class="video-description">
-        ভিডিওটি আনলক করতে নিচের Rewarded বিজ্ঞাপনগুলো সম্পূর্ণ করুন।
-      </p>
-
-
-      <!-- Progress -->
-      <div
-        id="progressBox"
-        class="progress-box"
+      <img
+        class="thumbnail"
+        src="https://placehold.co/800x450/png?text=Viral+Video"
+        alt="Viral Video"
       >
 
-        <div class="progress-top">
+      <div class="video-info">
 
-          <span class="progress-title">
-            বিজ্ঞাপন সম্পন্ন
-          </span>
-
-          <span
-            id="progressText"
-            class="progress-number"
-          >
-            0 / 3
-          </span>
-
+        <div class="badge">
+          🔒 Ad Watch Required
         </div>
 
-        <div class="progress-track">
+        <div class="video-title">
+          🔥 Trending Viral Video
+        </div>
+
+        <div class="video-description">
+          ভিডিওটি আনলক করতে ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণভাবে দেখতে হবে।
+          বিজ্ঞাপনের offer-এ click বা purchase করার প্রয়োজন নেই।
+        </div>
+
+        <button
+          id="unlockBtn"
+          class="unlock-btn"
+          type="button"
+          onclick="startUnlock()"
+        >
+          🔓 ভিডিও আনলক করুন
+        </button>
+
+        <div
+          class="progress-box"
+          id="progressBox"
+        >
 
           <div
-            id="progressBar"
-            class="progress-bar"
-          ></div>
+            class="progress-text"
+            id="progressText"
+          >
+            বিজ্ঞাপন: 0 / 3
+          </div>
 
+          <div class="progress-bg">
+            <div
+              class="progress-bar"
+              id="progressBar"
+            ></div>
+          </div>
+
+        </div>
+
+        <div
+          id="statusBox"
+          class="status-box"
+        ></div>
+
+        <div
+          class="success-box"
+          id="successBox"
+        >
+          🎉 ৩টি বিজ্ঞাপন সম্পূর্ণ হয়েছে!
+          <br><br>
+          এখন ভিডিও আনলক করা যাবে।
+        </div>
+
+        <div class="note-box">
+          ℹ️ Rewarded বিজ্ঞাপন সম্পূর্ণ করার পর পরবর্তী বিজ্ঞাপন দেখার
+          সুযোগ পাবেন।
         </div>
 
       </div>
-
-
-      <!-- Status -->
-      <div
-        id="infoBox"
-        class="status-box"
-      ></div>
-
-
-      <!-- Unlock Button -->
-      <button
-        id="unlockBtn"
-        class="unlock-btn"
-        type="button"
-      >
-        🔓 ভিডিও আনলক করুন
-      </button>
-
-
-      <!-- Requirements -->
-      <div class="requirements">
-
-        <div class="requirements-title">
-          📋 কী করতে হবে?
-        </div>
-
-        <div class="requirement">
-          <span>①</span>
-          <span>Rewarded বিজ্ঞাপন চালু করুন</span>
-        </div>
-
-        <div class="requirement">
-          <span>②</span>
-          <span>বিজ্ঞাপনটি সম্পূর্ণ দেখুন</span>
-        </div>
-
-        <div class="requirement">
-          <span>③</span>
-          <span>মোট ৩টি বিজ্ঞাপন সম্পূর্ণ করুন</span>
-        </div>
-
-        <div class="requirement">
-          <span>④</span>
-          <span>তারপর ভিডিও আনলক হবে</span>
-        </div>
-
-      </div>
-
     </div>
-
-
-    <div class="footer">
-      Ad2Reward • Powered by Rewarded Ads
-    </div>
-
   </div>
 
 
   <script>
 
-    /*
-     * ==========================================
-     * Ad2Reward
-     * Telegram + Monetag Rewarded Interstitial
-     * ==========================================
-     */
+    /* =========================================
+       TELEGRAM MINI APP
+    ========================================= */
 
+    const tg =
+      window.Telegram &&
+      window.Telegram.WebApp
+        ? window.Telegram.WebApp
+        : null;
+
+    if (tg) {
+      try {
+        tg.ready();
+        tg.expand();
+      } catch (error) {
+        console.log("Telegram WebApp error:", error);
+      }
+    }
+
+
+    /* =========================================
+       SETTINGS
+    ========================================= */
 
     const MONETAG_ZONE = "11748430";
-
     const TOTAL_ADS = 3;
 
-
     let adsWatched = 0;
-
     let isWatching = false;
 
-    let adReady = false;
 
-    let currentYmid = null;
-
+    /* =========================================
+       DOM ELEMENTS
+    ========================================= */
 
     const unlockBtn =
       document.getElementById("unlockBtn");
@@ -555,90 +343,49 @@
     const progressBar =
       document.getElementById("progressBar");
 
-    const infoBox =
-      document.getElementById("infoBox");
+    const statusBox =
+      document.getElementById("statusBox");
+
+    const successBox =
+      document.getElementById("successBox");
 
 
-    /*
-     * ==========================================
-     * Telegram initialization
-     * ==========================================
-     */
+    /* =========================================
+       STATUS MESSAGE
+    ========================================= */
 
-    function initTelegram() {
+    function showInfo(message) {
 
-      try {
+      statusBox.className =
+        "status-box status-info";
 
-        if (
-          window.Telegram &&
-          Telegram.WebApp
-        ) {
-
-          Telegram.WebApp.ready();
-
-          Telegram.WebApp.expand();
-
-          console.log(
-            "Telegram WebApp ready"
-          );
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Telegram initialization error:",
-          error
-        );
-
-      }
-
+      statusBox.textContent = message;
     }
 
 
-    /*
-     * ==========================================
-     * Status message
-     * ==========================================
-     */
+    function showSuccess(message) {
 
-    function showInfo(
-      message,
-      type = "info"
-    ) {
+      statusBox.className =
+        "status-box status-success";
 
-      infoBox.style.display = "block";
-
-      infoBox.className =
-        "status-box " +
-        (
-          type === "error"
-            ? "error-box"
-            : type === "success"
-              ? "success-box"
-              : "info-box"
-        );
-
-      infoBox.textContent = message;
-
+      statusBox.textContent = message;
     }
 
 
-    /*
-     * ==========================================
-     * Progress update
-     * ==========================================
-     */
+    function showError(message) {
+
+      statusBox.className =
+        "status-box status-error";
+
+      statusBox.textContent = message;
+    }
+
+
+    /* =========================================
+       PROGRESS
+    ========================================= */
 
     function updateProgress() {
-
-      progressBox.style.display =
-        "block";
-
-      progressText.textContent =
-        adsWatched +
-        " / " +
-        TOTAL_ADS;
 
       const percent =
         (adsWatched / TOTAL_ADS) * 100;
@@ -646,37 +393,51 @@
       progressBar.style.width =
         percent + "%";
 
+      progressText.textContent =
+        "বিজ্ঞাপন: " +
+        adsWatched +
+        " / " +
+        TOTAL_ADS;
     }
 
 
-    /*
-     * ==========================================
-     * Wait for Monetag SDK
-     * ==========================================
-     */
+    /* =========================================
+       CREATE UNIQUE YMID
+    ========================================= */
 
-    function waitForMonetag(
-      timeout = 10000
-    ) {
+    function createYmid() {
+
+      return (
+        "ad2reward-" +
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2, 10)
+      );
+    }
+
+
+    /* =========================================
+       WAIT FOR MONETAG SDK
+    ========================================= */
+
+    function waitForMonetag(timeout = 10000) {
 
       return new Promise(
-        (resolve, reject) => {
+        function(resolve, reject) {
 
           const start =
             Date.now();
 
-
           function check() {
 
             const functionName =
-              "show_" +
-              MONETAG_ZONE;
-
+              "show_" + MONETAG_ZONE;
 
             if (
-              typeof window[
-                functionName
-              ] === "function"
+              typeof window[functionName] ===
+              "function"
             ) {
 
               resolve(
@@ -684,9 +445,7 @@
               );
 
               return;
-
             }
-
 
             if (
               Date.now() - start >=
@@ -700,144 +459,32 @@
               );
 
               return;
-
             }
-
 
             setTimeout(
               check,
               250
             );
-
           }
 
-
           check();
-
         }
       );
-
     }
 
 
-    /*
-     * ==========================================
-     * Generate unique event ID
-     * ==========================================
-     */
-
-    function createYmid() {
-
-      return (
-        "ad2reward-" +
-        Date.now() +
-        "-" +
-        Math.random()
-          .toString(36)
-          .substring(2, 10)
-      );
-
-    }
-
-
-    /*
-     * ==========================================
-     * Preload Rewarded Ad
-     * ==========================================
-     */
-
-    async function preloadAd() {
-
-      try {
-
-        const showAd =
-          await waitForMonetag();
-
-
-        currentYmid =
-          createYmid();
-
-
-        showInfo(
-          "⏳ বিজ্ঞাপন প্রস্তুত হচ্ছে..."
-        );
-
-
-        await showAd({
-
-          type: "preload",
-
-          ymid: currentYmid
-
-        });
-
-
-        adReady = true;
-
-
-        unlockBtn.disabled =
-          false;
-
-
-        showInfo(
-          "✅ বিজ্ঞাপন প্রস্তুত। এখন শুরু করতে পারেন।"
-        );
-
-
-        console.log(
-          "Monetag ad preloaded:",
-          currentYmid
-        );
-
-      } catch (error) {
-
-        adReady = false;
-
-
-        console.error(
-          "Preload error:",
-          error
-        );
-
-
-        unlockBtn.disabled =
-          false;
-
-
-        showInfo(
-  "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি। আবার চেষ্টা করুন.\n\nকারণ: " +
-  reason,
-  "error"
-);
-
-console.log(
-  "Monetag error reason:",
-  reason
-);
-
-
-
-    /*
-     * ==========================================
-     * Start Rewarded Ad
-     * ==========================================
-     */
+    /* =========================================
+       START REWARDED AD
+    ========================================= */
 
     async function startUnlock() {
 
       if (isWatching) {
-
         return;
-
       }
 
-
-      if (
-        adsWatched >= TOTAL_ADS
-      ) {
-
+      if (adsWatched >= TOTAL_ADS) {
         return;
-
       }
 
 
@@ -845,160 +492,155 @@ console.log(
 
       unlockBtn.disabled = true;
 
+      progressBox.style.display =
+        "block";
 
-      const currentNumber =
+      successBox.style.display =
+        "none";
+
+
+      const adNumber =
         adsWatched + 1;
 
 
       showInfo(
         "⏳ বিজ্ঞাপন " +
-        currentNumber +
+        adNumber +
         " / " +
         TOTAL_ADS +
-        " শুরু হচ্ছে..."
+        " লোড হচ্ছে..."
       );
 
 
       try {
 
+        /* Wait for Monetag SDK */
+
         const showAd =
           await waitForMonetag();
 
 
+        /* Unique event ID */
+
+        const ymid =
+          createYmid();
+
+
+        showInfo(
+          "⏳ বিজ্ঞাপন " +
+          adNumber +
+          " / " +
+          TOTAL_ADS +
+          " শুরু হচ্ছে..."
+        );
+
+
         /*
-         * যদি preload না থাকে,
-         * নতুন ymid তৈরি করি।
-         */
-
-        if (!currentYmid) {
-
-          currentYmid =
-            createYmid();
-
-        }
-
-
-        /*
-         * Rewarded Interstitial
+         * IMPORTANT:
+         * type = end
          *
-         * গুরুত্বপূর্ণ:
-         * Promise resolve হলেই শুধু
-         * advertisement completed
-         * ধরা হবে।
+         * Reward is counted ONLY
+         * after the ad is completed.
+         *
+         * catchIfNoFeed = true
+         * means no ad feed will not
+         * be counted as a reward.
          */
 
-        await showAd({
+        const result =
+          await showAd({
 
-          type: "end",
+            type: "end",
 
-          ymid: currentYmid
+            ymid: ymid,
 
-        });
+            requestVar:
+              "unlock_ad",
 
+            catchIfNoFeed: true
 
-        /*
-         * ======================================
-         * AD SUCCESS
-         * ======================================
-         */
-
-        adsWatched++;
-
-
-        updateProgress();
+          });
 
 
         console.log(
-          "Rewarded ad completed:",
-          adsWatched
+          "Monetag Rewarded result:",
+          result
         );
+
+
+        /* =====================================
+           AD SUCCESSFULLY COMPLETED
+        ===================================== */
+
+        adsWatched++;
+
+        updateProgress();
 
 
         if (
           adsWatched < TOTAL_ADS
         ) {
 
-          showInfo(
+          showSuccess(
             "✅ বিজ্ঞাপন " +
             adsWatched +
             " / " +
             TOTAL_ADS +
-            " সম্পূর্ণ হয়েছে। আরও " +
-            (TOTAL_ADS - adsWatched) +
-            "টি বাকি।"
+            " সম্পূর্ণ হয়েছে।"
           );
 
+          unlockBtn.disabled =
+            false;
 
-          /*
-           * পরের বিজ্ঞাপনের জন্য
-           * নতুন event ID
-           */
-
-          currentYmid =
-            createYmid();
-
-
-          adReady = false;
-
-
-          /*
-           * পরের ad preload
-           */
-
-          preloadAd();
+          unlockBtn.textContent =
+            "▶️ বিজ্ঞাপন " +
+            (adsWatched + 1) +
+            " / " +
+            TOTAL_ADS +
+            " দেখুন";
 
         } else {
 
-          /*
-           * ==================================
-           * ALL ADS COMPLETED
-           * ==================================
-           */
+          /* ===================================
+             ALL ADS COMPLETED
+          =================================== */
 
           progressBar.style.width =
             "100%";
 
-
           progressText.textContent =
-            "3 / 3";
+            TOTAL_ADS +
+            " / " +
+            TOTAL_ADS;
 
-
-          showInfo(
-            "🎉 অভিনন্দন! ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণ হয়েছে। ভিডিও এখন আনলক করা যাবে।",
-            "success"
+          showSuccess(
+            "🎉 অভিনন্দন! " +
+            TOTAL_ADS +
+            "টি Rewarded বিজ্ঞাপন সম্পূর্ণ হয়েছে।"
           );
 
+          successBox.style.display =
+            "block";
+
+          unlockBtn.disabled =
+            false;
 
           unlockBtn.textContent =
             "🎬 ভিডিও আনলক করুন";
 
-
-          unlockBtn.classList.add(
-            "ready"
-          );
-
-
-          /*
-           * এখানে পরে backend
-           * verification যুক্ত হবে।
-           */
-
           unlockBtn.onclick =
             unlockVideo;
-
         }
 
 
       } catch (error) {
 
-        /*
-         * ======================================
-         * AD FAILED / SKIPPED
-         * ======================================
-         */
+        /* =====================================
+           AD ERROR
+        ===================================== */
 
         console.error(
-          "Monetag Rewarded error:",
+          "Monetag Rewarded Ad Error:",
           error
         );
 
@@ -1016,70 +658,45 @@ console.log(
             error.message;
 
         } else if (
-          typeof error === "string"
+          typeof error ===
+          "string"
         ) {
 
           reason =
             error;
-
         }
 
 
-        showInfo(
-          "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি। আবার চেষ্টা করুন।",
-          "error"
-        );
-
-
-        /*
-         * Browser console-এ
-         * আসল error দেখাবে।
-         */
-
-        console.log(
-          "Monetag error reason:",
+        showError(
+          "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি।\n\n" +
+          "কারণ: " +
           reason
         );
 
 
         /*
-         * আবার preload করার চেষ্টা
+         * IMPORTANT:
+         * Failed ad is NOT counted.
          */
 
-        adReady = false;
+        unlockBtn.disabled =
+          false;
 
-        currentYmid = null;
+        unlockBtn.textContent =
+          "🔄 আবার বিজ্ঞাপন দেখুন";
 
-
-        setTimeout(
-          preloadAd,
-          1000
-        );
 
       } finally {
 
         isWatching = false;
 
-
-        if (
-          adsWatched < TOTAL_ADS
-        ) {
-
-          unlockBtn.disabled =
-            false;
-
-        }
-
       }
-
     }
 
 
-    /*
-     * ==========================================
-     * Unlock Video
-     * ==========================================
-     */
+    /* =========================================
+       VIDEO UNLOCK
+       ========================================= */
 
     function unlockVideo() {
 
@@ -1087,150 +704,58 @@ console.log(
         adsWatched !== TOTAL_ADS
       ) {
 
-        showInfo(
-          "⚠️ আগে ৩টি বিজ্ঞাপন সম্পূর্ণ করুন।",
-          "error"
+        showError(
+          "⚠️ আগে " +
+          TOTAL_ADS +
+          "টি বিজ্ঞাপন সম্পূর্ণ করুন।"
         );
 
         return;
-
       }
 
 
-      showInfo(
-        "🎉 ভিডিও আনলক হচ্ছে...",
-        "success"
-      );
+      /*
+       * TEST MODE ONLY
+       *
+       * এখানে এখনো backend
+       * verification যুক্ত হয়নি।
+       */
 
+      showSuccess(
+        "🎬 ভিডিও আনলক হচ্ছে..."
+      );
 
       unlockBtn.disabled =
         true;
 
 
-      /*
-       * ======================================
-       * IMPORTANT
-       * ======================================
-       *
-       * Production version-এ এখানে
-       * সরাসরি video URL দেওয়া যাবে না।
-       *
-       * Backend থেকে verified unlock
-       * নিতে হবে।
-       *
-       * আপাতত test হিসেবে message দেখানো হচ্ছে।
-       */
-
       setTimeout(
-        function () {
+        function() {
 
-          showInfo(
-            "🎬 ভিডিও আনলক সফল হয়েছে! Backend verification যুক্ত হলে এখানে আসল ভিডিও চালু হবে।",
-            "success"
+          showSuccess(
+            "🎉 ভিডিও আনলক সফল হয়েছে!\n\n" +
+            "Backend verification যুক্ত হলে এখানে আসল ভিডিও চালু হবে।"
           );
-
 
           unlockBtn.textContent =
             "▶️ ভিডিও দেখুন";
 
-
           unlockBtn.disabled =
             false;
 
-
         },
-        700
+        800
       );
-
     }
 
 
-    /*
-     * ==========================================
-     * Button Event
-     * ==========================================
-     */
+    /* =========================================
+       INITIAL STATE
+    ========================================= */
 
-    unlockBtn.addEventListener(
-      "click",
-      function () {
-
-        if (
-          adsWatched >= TOTAL_ADS
-        ) {
-
-          unlockVideo();
-
-        } else {
-
-          startUnlock();
-
-        }
-
-      }
-    );
-
-
-    /*
-     * ==========================================
-     * Page Load
-     * ==========================================
-     */
-
-    window.addEventListener(
-      "load",
-      async function () {
-
-        console.log(
-          "Ad2Reward loaded"
-        );
-
-
-        initTelegram();
-
-
-        unlockBtn.disabled =
-          true;
-
-
-        updateProgress();
-
-
-        /*
-         * Monetag SDK ready হওয়ার
-         * পর ad preload করব।
-         */
-
-        try {
-
-          await waitForMonetag();
-
-
-          await preloadAd();
-
-        } catch (error) {
-
-          console.error(
-            "Initial Monetag error:",
-            error
-          );
-
-
-          unlockBtn.disabled =
-            false;
-
-
-          showInfo(
-            "⚠️ বিজ্ঞাপন সার্ভিস লোড হয়নি। কিছুক্ষণ পর আবার চেষ্টা করুন।",
-            "error"
-          );
-
-        }
-
-      }
-    );
+    updateProgress();
 
   </script>
 
 </body>
-        </html>
+  </html>
