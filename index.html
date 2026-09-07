@@ -2,22 +2,23 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Ad2Reward - Viral Hub</title>
 
-  <!-- Telegram Mini App -->
+  <!-- Telegram Mini App SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
   <!-- Monetag SDK -->
-  <script src="//libtl.com/sdk.js" data-zone="11748430"></script>
-<script>
-window.addEventListener("load", function () {
-  if (window.Telegram && Telegram.WebApp) {
-    Telegram.WebApp.ready();
-  }
-});
-</script>
+  <script
+    src="//libtl.com/sdk.js"
+    data-zone="11748430"
+  ></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -194,7 +195,10 @@ window.addEventListener("load", function () {
 
   <div class="header">
     <h1>🔥 Ad2Reward</h1>
-    <p>Rewarded বিজ্ঞাপন দেখে Trending ভিডিও আনলক করুন</p>
+
+    <p>
+      Rewarded বিজ্ঞাপন দেখে Trending ভিডিও আনলক করুন
+    </p>
   </div>
 
   <div class="container">
@@ -222,9 +226,9 @@ window.addEventListener("load", function () {
         </div>
 
         <div class="video-description">
-          ভিডিওটি দেখতে আগে ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণভাবে
-          দেখতে হবে। বিজ্ঞাপন সম্পূর্ণ হলে ভিডিও আনলক করার
-          পরবর্তী ধাপ দেখানো হবে।
+          ভিডিওটি দেখতে আগে ৩টি Rewarded বিজ্ঞাপন
+          সম্পূর্ণভাবে দেখতে হবে। বিজ্ঞাপন সম্পূর্ণ হলে
+          ভিডিও আনলক করার পরবর্তী ধাপ দেখানো হবে।
         </div>
 
         <button
@@ -248,10 +252,12 @@ window.addEventListener("load", function () {
           </div>
 
           <div class="progress-bg">
+
             <div
               id="progressBar"
               class="progress-bar"
             ></div>
+
           </div>
 
         </div>
@@ -261,109 +267,454 @@ window.addEventListener("load", function () {
           class="status-box info-box"
         ></div>
 
-        </div>
+      </div>
 
-<script>
-let adsWatched = 0;
-const totalAds = 3;
-let isWatching = false;
+    </div>
 
-const unlockBtn = document.getElementById("unlockBtn");
-const progressBox = document.getElementById("progressBox");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
-const infoBox = document.getElementById("infoBox");
+  </div>
 
-function showInfo(message, type = "info") {
-  infoBox.style.display = "block";
-  infoBox.className =
-    "status-box " +
-    (type === "error"
-      ? "error-box"
-      : type === "success"
-      ? "success-box"
-      : "info-box");
+  <div class="footer">
+    🔥 Ad2Reward
+  </div>
 
-  infoBox.textContent = message;
-}
 
-function updateProgress() {
-  progressBox.style.display = "block";
+  <script>
 
-  progressText.textContent =
-    "বিজ্ঞাপন: " + adsWatched + " / " + totalAds;
+    /*
+      =========================================
+      Ad2Reward - Monetag Rewarded Interstitial
+      =========================================
+    */
 
-  progressBar.style.width =
-    (adsWatched / totalAds * 100) + "%";
-}
+    const TOTAL_ADS = 3;
+    const ZONE_ID = "11748430";
 
-async function startUnlock() {
+    let adsWatched = 0;
+    let isWatching = false;
+    let adReady = false;
+    let currentYmid = null;
 
-  if (isWatching) return;
 
-  isWatching = true;
-  unlockBtn.disabled = true;
+    /*
+      Telegram WebApp initialization
+    */
 
-  showInfo(
-    "বিজ্ঞাপন " +
-    (adsWatched + 1) +
-    " / " +
-    totalAds +
-    " শুরু হচ্ছে..."
-  );
+    if (
+      window.Telegram &&
+      Telegram.WebApp
+    ) {
 
-  try {
+      Telegram.WebApp.ready();
 
-    if (typeof show_11748430 !== "function") {
-      throw new Error("Monetag SDK not loaded");
-    }
-
-    await show_11748430();
-
-    adsWatched++;
-
-    updateProgress();
-
-    if (adsWatched < totalAds) {
-
-      showInfo(
-        "✅ বিজ্ঞাপন সম্পূর্ণ হয়েছে। আরও " +
-        (totalAds - adsWatched) +
-        "টি বিজ্ঞাপন বাকি।"
-      );
-
-      unlockBtn.disabled = false;
-
-    } else {
-
-      showInfo(
-        "🎉 ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণ হয়েছে!",
-        "success"
-      );
-
-      unlockBtn.textContent =
-        "✅ বিজ্ঞাপন সম্পূর্ণ";
+      try {
+        Telegram.WebApp.expand();
+      } catch (e) {
+        console.log("Telegram expand unavailable");
+      }
 
     }
 
-  } catch (error) {
 
-    console.error("Monetag error:", error);
+    /*
+      DOM elements
+    */
 
-    showInfo(
-      "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি। আবার চেষ্টা করুন।",
-      "error"
+    const unlockBtn =
+      document.getElementById("unlockBtn");
+
+    const progressBox =
+      document.getElementById("progressBox");
+
+    const progressText =
+      document.getElementById("progressText");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+    const infoBox =
+      document.getElementById("infoBox");
+
+
+    /*
+      Status message
+    */
+
+    function showInfo(
+      message,
+      type = "info"
+    ) {
+
+      infoBox.style.display = "block";
+
+      if (type === "error") {
+
+        infoBox.className =
+          "status-box error-box";
+
+      } else if (type === "success") {
+
+        infoBox.className =
+          "status-box success-box";
+
+      } else {
+
+        infoBox.className =
+          "status-box info-box";
+
+      }
+
+      infoBox.textContent = message;
+
+    }
+
+
+    /*
+      Progress update
+    */
+
+    function updateProgress() {
+
+      progressBox.style.display = "block";
+
+      progressText.textContent =
+        "বিজ্ঞাপন: " +
+        adsWatched +
+        " / " +
+        TOTAL_ADS;
+
+      progressBar.style.width =
+        (
+          adsWatched /
+          TOTAL_ADS *
+          100
+        ) + "%";
+
+    }
+
+
+    /*
+      Wait until Monetag SDK is available
+    */
+
+    function waitForMonetag() {
+
+      return new Promise(
+        function(resolve, reject) {
+
+          let attempts = 0;
+
+          const timer =
+            setInterval(
+              function() {
+
+                if (
+                  typeof window[
+                    "show_" + ZONE_ID
+                  ] === "function"
+                ) {
+
+                  clearInterval(timer);
+
+                  resolve();
+
+                  return;
+                }
+
+
+                attempts++;
+
+
+                if (attempts >= 50) {
+
+                  clearInterval(timer);
+
+                  reject(
+                    new Error(
+                      "Monetag SDK load হয়নি"
+                    )
+                  );
+
+                }
+
+              },
+              200
+            );
+
+        }
+      );
+
+    }
+
+
+    /*
+      Preload Rewarded Ad
+    */
+
+    async function preloadAd() {
+
+      try {
+
+        await waitForMonetag();
+
+        currentYmid =
+          "ad2reward-" +
+          Date.now();
+
+        showInfo(
+          "⏳ বিজ্ঞাপন প্রস্তুত হচ্ছে..."
+        );
+
+        await window[
+          "show_" + ZONE_ID
+        ]({
+
+          type: "preload",
+
+          ymid: currentYmid
+
+        });
+
+
+        adReady = true;
+
+        showInfo(
+          "✅ বিজ্ঞাপন প্রস্তুত। আনলক করতে চাপুন।"
+        );
+
+        unlockBtn.disabled = false;
+
+
+      } catch (error) {
+
+        console.error(
+          "Preload error:",
+          error
+        );
+
+        adReady = false;
+
+        unlockBtn.disabled = false;
+
+        showInfo(
+          "বিজ্ঞাপন এখনো প্রস্তুত হয়নি। আবার চেষ্টা করুন।"
+        );
+
+      }
+
+    }
+
+
+    /*
+      Show Rewarded Ad
+    */
+
+    async function startUnlock() {
+
+      if (isWatching) {
+        return;
+      }
+
+
+      if (adsWatched >= TOTAL_ADS) {
+        return;
+      }
+
+
+      isWatching = true;
+
+      unlockBtn.disabled = true;
+
+
+      try {
+
+        await waitForMonetag();
+
+
+        /*
+          If an ad was not preloaded,
+          prepare one now.
+        */
+
+        if (!adReady) {
+
+          showInfo(
+            "⏳ বিজ্ঞাপন প্রস্তুত হচ্ছে..."
+          );
+
+          currentYmid =
+            "ad2reward-" +
+            Date.now();
+
+          await window[
+            "show_" + ZONE_ID
+          ]({
+
+            type: "preload",
+
+            ymid: currentYmid
+
+          });
+
+          adReady = true;
+
+        }
+
+
+        showInfo(
+          "🎬 বিজ্ঞাপন " +
+          (adsWatched + 1) +
+          " / " +
+          TOTAL_ADS +
+          " শুরু হচ্ছে..."
+        );
+
+
+        /*
+          Show the actual rewarded ad
+        */
+
+        await window[
+          "show_" + ZONE_ID
+        ]({
+
+          ymid: currentYmid
+
+        });
+
+
+        /*
+          IMPORTANT:
+          Only count the ad after the
+          Monetag Promise resolves.
+        */
+
+        adsWatched++;
+
+        updateProgress();
+
+
+        /*
+          Reset preload state
+        */
+
+        adReady = false;
+
+        currentYmid = null;
+
+
+        /*
+          More ads required
+        */
+
+        if (
+          adsWatched < TOTAL_ADS
+        ) {
+
+          showInfo(
+            "✅ বিজ্ঞাপন সম্পূর্ণ হয়েছে। " +
+            "আরও " +
+            (
+              TOTAL_ADS -
+              adsWatched
+            ) +
+            "টি বিজ্ঞাপন বাকি।"
+          );
+
+          unlockBtn.disabled = false;
+
+
+          /*
+            Preload the next ad
+          */
+
+          setTimeout(
+            function() {
+              preloadAd();
+            },
+            500
+          );
+
+        }
+
+
+        /*
+          All ads completed
+        */
+
+        else {
+
+          showInfo(
+            "🎉 ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণ হয়েছে!",
+            "success"
+          );
+
+          unlockBtn.textContent =
+            "✅ বিজ্ঞাপন সম্পূর্ণ";
+
+          unlockBtn.disabled = true;
+
+          /*
+            Production version:
+            এখানে backend verification
+            করে তারপর real video unlock
+            করা হবে।
+          */
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Monetag Rewarded Error:",
+          error
+        );
+
+
+        adReady = false;
+
+        currentYmid = null;
+
+
+        showInfo(
+          "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি। আবার চেষ্টা করুন।",
+          "error"
+        );
+
+
+        unlockBtn.disabled = false;
+
+
+      } finally {
+
+        isWatching = false;
+
+      }
+
+    }
+
+
+    /*
+      Start preload after page is ready
+    */
+
+    window.addEventListener(
+      "load",
+      function() {
+
+        setTimeout(
+          function() {
+
+            preloadAd();
+
+          },
+          800
+        );
+
+      }
     );
 
-    unlockBtn.disabled = false;
-
-  } finally {
-
-    isWatching = false;
-
-  }
-}
-</script>
+  </script>
 
 </body>
 </html>
