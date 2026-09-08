@@ -1,761 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff"><title>মায়া</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="https://libtl.com/sdk.js" data-zone="11748430" data-sdk="show_11748430"></script>
+<style>
+:root{--p:#635bff;--p2:#1685ff;--a:#ff5c8a;--bg:#f6f7ff;--card:#fff;--text:#17172b;--muted:#74778a;--border:rgba(30,30,70,.10);--shadow:0 10px 28px rgba(50,45,120,.09);--safe:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}html,body{background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Bengali",sans-serif;min-height:100%;overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}.app{min-height:100vh;padding-bottom:calc(78px + var(--safe))}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:calc(9px + env(safe-area-inset-top,0px)) 12px 10px}.header-inner{max-width:760px;margin:auto}.top-row{display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center}.brand{display:flex;align-items:center;gap:8px;min-width:0}.brand-icon{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#7566ff,#36a0ff);font-size:22px;box-shadow:0 6px 15px rgba(80,80,220,.18)}.brand-name{font-size:18px;font-weight:900;white-space:nowrap}.tools{display:flex;gap:6px;justify-content:flex-end}.tool{width:39px;height:39px;border:1px solid var(--border);border-radius:13px;background:#fff;display:grid;place-items:center;color:var(--text);box-shadow:0 4px 12px rgba(40,40,80,.05)}.lang{font-size:11px;font-weight:900}.notify{font-size:18px}.menu{font-size:22px}.search-wrap{margin-top:10px;position:relative}.search-box{width:100%;height:52px;border:1px solid var(--border);border-radius:14px;background:#f8f9ff;display:flex;align-items:center}.search-box span{padding-left:13px;font-size:17px}.search-box input{border:0;outline:0;background:transparent;width:100%;height:100%;padding:0 14px;font-size:14px;color:var(--text)}.clear{border:0;background:transparent;color:var(--muted);padding:8px;display:none}.drawer{display:none;margin-top:9px;border:1px solid var(--border);background:#fff;border-radius:18px;padding:9px;box-shadow:var(--shadow)}.drawer.open{display:grid;grid-template-columns:1fr;gap:9px}.drawer-title{grid-column:1/-1;font-size:13px;font-weight:900;padding:3px 3px 0}.layout-item{border:1px solid rgba(99,91,255,.22);border-radius:15px;background:linear-gradient(145deg,#fff,#fafaff);padding:10px;text-align:center;box-shadow:0 5px 15px rgba(40,40,90,.05)}.layout-item.first{border:1px solid rgba(99,91,255,.28)}.layout-thumb{width:100%;height:70px;border-radius:11px;background:linear-gradient(135deg,#eef0ff,#fff0f5);display:grid;place-items:center;font-size:27px;margin-bottom:7px;border:1px solid rgba(99,91,255,.08)}.layout-item.first .layout-thumb{height:58px}.drawer-section-label{display:none}.layout-title{font-size:12px;font-weight:900}.layout-sub{font-size:9px;color:var(--muted);margin-top:3px}.lang-toast{position:fixed;z-index:100;top:calc(70px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:#17172b;color:#fff;padding:9px 13px;border-radius:999px;font-size:11px;display:none}
+.hero{max-width:760px;margin:12px auto 0;padding:0 12px}.slider{overflow:hidden;border-radius:23px;box-shadow:0 12px 30px rgba(55,65,160,.16);position:relative}.track{display:flex;will-change:transform;transition:transform .55s cubic-bezier(.2,.75,.2,1);touch-action:pan-y}.slide{position:relative;flex:0 0 100%;height:210px;overflow:hidden;color:#fff;background:linear-gradient(135deg,#245fff,#4777ff 48%,#ef5b8d)}.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,25,85,.76),rgba(37,86,210,.25) 55%,rgba(220,50,120,.38))}.slide-content{position:relative;z-index:2;height:100%;padding:22px 44px 36px 20px;display:flex;flex-direction:column}.slide-content.top{justify-content:flex-start}.slide-content.center{justify-content:center}.slide-content.bottom{justify-content:flex-end}.kicker{align-self:flex-start;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 9px;font-size:10px;font-weight:900}.slide h2{font-size:25px;line-height:1.13;margin-top:8px;font-weight:900;max-width:92%;text-shadow:0 2px 8px rgba(0,0,0,.18)}.slide p{font-size:12px;line-height:1.45;margin-top:6px;max-width:90%;opacity:.95}.arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.16);color:#fff;font-size:22px}.left{left:8px}.right{right:8px}.dots{position:absolute;z-index:4;bottom:9px;left:50%;transform:translateX(-50%);display:flex;gap:5px}.dot{width:7px;height:7px;border:0;border-radius:50%;background:rgba(255,255,255,.55)}.dot.active{width:19px;border-radius:99px;background:#fff}
+.container{max-width:760px;margin:auto;padding:14px 12px}.page{display:none}.page.active{display:block}.category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.cat{min-width:0;border:1px solid var(--border);background:#fff;border-radius:18px;padding:12px 10px;display:grid;grid-template-columns:38px 1fr;align-items:center;column-gap:8px;box-shadow:0 7px 20px rgba(30,30,70,.055);text-align:left}.cat.active{border-color:rgba(99,91,255,.32);background:linear-gradient(135deg,rgba(99,91,255,.09),rgba(22,133,255,.04))}.cat-icon{grid-row:1/3;width:38px;height:38px;border-radius:13px;background:#f2f1ff;display:grid;place-items:center;font-size:24px}.cat-name{font-size:14px;font-weight:900}.cat-sub{font-size:10px;color:var(--muted);margin-top:3px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:17px 3px 9px}.section-head h3{font-size:18px}.section-head span{font-size:11px;color:var(--muted)}.video{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}.thumb{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#ddd,#bbb);display:grid;place-items:center;color:#999;font-size:34px;font-weight:900}.fav{position:absolute;right:11px;top:11px;width:43px;height:43px;border:0;border-radius:14px;background:rgba(255,255,255,.94);font-size:22px;box-shadow:0 7px 18px rgba(0,0,0,.13)}.view{position:absolute;left:11px;bottom:11px;background:rgba(0,0,0,.48);color:#fff;border-radius:999px;padding:7px 10px;font-size:10px}.info{padding:14px}.meta{display:flex;justify-content:space-between;align-items:center;gap:8px}.badge{background:rgba(99,91,255,.1);color:var(--p);border-radius:999px;padding:6px 9px;font-size:10px;font-weight:900}.title{font-size:18px;font-weight:900;line-height:1.3;margin:10px 0 5px}.desc{font-size:12px;color:var(--muted);line-height:1.5}.unlock{width:100%;margin-top:12px;border:0;border-radius:14px;padding:13px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;font-weight:900;font-size:13px}.progress{display:none;margin-top:10px;padding:11px;background:#f4f3ff;border-radius:14px}.progress-text{text-align:center;font-size:11px;font-weight:900;margin-bottom:7px}.barbg{height:8px;background:#e4e5ef;border-radius:99px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--a));border-radius:99px}.status{display:none;margin-top:9px;padding:10px;border-radius:12px;text-align:center;font-size:11px;white-space:pre-wrap}.ok{display:block;background:#ecfdf5;color:#087a57}.err{display:block;background:#fff0f0;color:#b42318}.subgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.subcat{border:1px solid rgba(99,91,255,.14);background:linear-gradient(145deg,#fff,#fafaff);border-radius:18px;padding:11px 9px;text-align:left;box-shadow:0 6px 18px rgba(40,40,90,.06)}.subcat.active{border-color:rgba(99,91,255,.35)}.sublogo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-size:24px;margin-bottom:8px}.subname{font-size:14px;font-weight:900}.subdesc{font-size:9px;color:var(--muted);margin-top:3px}.back{width:40px;height:40px;border:1px solid var(--border);border-radius:13px;background:#fff;font-size:20px}.latest-head{display:flex;align-items:center;gap:9px;margin-bottom:12px}.latest-head h2{font-size:19px}.latest-head p{font-size:10px;color:var(--muted);margin-top:3px}.profile-box{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:19px;padding:15px;box-shadow:var(--shadow)}.avatar{width:57px;height:57px;border-radius:18px;background:linear-gradient(135deg,#e9e7ff,#e7f4ff);display:grid;place-items:center;font-size:25px;font-weight:900}.pname{font-size:18px;font-weight:900}.verify{font-size:11px;color:var(--muted);margin-top:5px}.verify b{color:#d02b2b}.actions{display:grid;gap:9px;margin-top:12px}.action{width:100%;display:grid;grid-template-columns:42px 1fr 20px;align-items:center;border:1px solid var(--border);background:#fff;border-radius:16px;padding:11px;text-align:left;box-shadow:0 6px 17px rgba(30,30,70,.05)}.action>span{width:38px;height:38px;border-radius:12px;background:#f4f3ff;display:grid;place-items:center;font-size:20px}.action b{font-size:13px}.action small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.action i{font-style:normal;font-size:23px;color:var(--muted)}.auth-box{margin-top:12px;background:#fff;border:1px solid var(--border);border-radius:18px;padding:14px}.auth-title{font-size:14px;font-weight:900}.auth-sub{font-size:10px;color:var(--muted);margin:5px 0 10px}.auth-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}.auth-btn{border:0;border-radius:13px;padding:11px;font-weight:900;font-size:11px}.tg{background:#e8f5ff;color:#1685ff}.phone{background:#f2f1ff;color:#635bff}.empty{background:#fff;border:1px dashed var(--border);border-radius:17px;padding:30px;text-align:center;color:var(--muted);font-size:12px}.bottom{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.97);border-top:1px solid var(--border);padding:6px 10px calc(6px + var(--safe));backdrop-filter:blur(15px)}.nav{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.nav button{border:0;background:transparent;border-radius:18px;padding:7px 4px;color:#74778a;font-size:10px}.nav button.active{background:#efedff;color:#635bff;font-weight:900}.nav b{display:block;font-size:22px;margin-bottom:2px}.modal{display:none;position:fixed;inset:0;z-index:90;background:rgba(18,18,35,.45);align-items:flex-end}.modal.open{display:flex}.sheet{width:100%;max-width:760px;margin:auto;background:#fff;border-radius:24px 24px 0 0;padding:17px 14px calc(20px + var(--safe));box-shadow:0 -10px 35px rgba(0,0,0,.18)}.sheet h3{font-size:18px}.sheet p{font-size:11px;color:var(--muted);margin-top:5px}.close{float:right;border:0;background:#f3f3f8;width:35px;height:35px;border-radius:11px;font-size:18px}.phone-input{width:100%;height:43px;margin-top:12px;border:1px solid var(--border);border-radius:13px;padding:0 12px;outline:none}.sheet-btn{width:100%;margin-top:9px;border:0;border-radius:13px;padding:12px;font-weight:900}.hide{display:none!important}
+@media(min-width:600px){.site-header{padding-left:18px;padding-right:18px}.header-inner{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center}.top-row{display:contents}.brand{grid-column:1}.search-wrap{grid-column:2;margin:0}.tools{grid-column:3}.drawer{position:absolute;right:18px;top:68px;width:340px}.hero{padding:0 18px}.slide{height:250px}.slide h2{font-size:31px}.container{padding-left:18px;padding-right:18px}}
 
-  <title>Ad2Reward</title>
-
-  <!-- Telegram Mini App SDK -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <!-- Monetag SDK -->
-  <script
-    src="https://libtl.com/sdk.js"
-    data-zone="11748430"
-    data-sdk="show_11748430">
-  </script>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6fb;
-      color: #111827;
-      min-height: 100vh;
-    }
-
-    .header {
-      background: linear-gradient(135deg, #1677ff, #6c4cff);
-      color: white;
-      padding: 24px 18px;
-      border-radius: 0 0 24px 24px;
-    }
-
-    .header h1 {
-      font-size: 26px;
-      margin-bottom: 7px;
-    }
-
-    .header p {
-      font-size: 14px;
-      opacity: 0.92;
-    }
-
-    .container {
-      padding: 18px;
-    }
-
-    .section-title {
-      font-size: 19px;
-      font-weight: bold;
-      margin-bottom: 14px;
-    }
-
-    .video-card {
-      background: white;
-      border-radius: 18px;
-      overflow: hidden;
-      margin-bottom: 18px;
-      box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-    }
-
-    .thumbnail {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      display: block;
-      background: #ddd;
-    }
-
-    .video-info {
-      padding: 16px;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #eef4ff;
-      color: #1677ff;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-bottom: 10px;
-    }
-
-    .video-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .video-description {
-      font-size: 13px;
-      color: #6b7280;
-      margin-bottom: 15px;
-      line-height: 1.5;
-    }
-
-    .unlock-btn {
-      width: 100%;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      background: #1677ff;
-      color: white;
-      font-size: 15px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .unlock-btn:active {
-      transform: scale(0.98);
-    }
-
-    .unlock-btn:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-    }
-
-    .progress-box {
-      display: none;
-      margin-top: 15px;
-      padding: 15px;
-      background: #f8fafc;
-      border-radius: 12px;
-    }
-
-    .progress-text {
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    .progress-bg {
-      width: 100%;
-      height: 10px;
-      background: #e5e7eb;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      width: 0%;
-      height: 100%;
-      background: #1677ff;
-      transition: width 0.3s ease;
-    }
-
-    .status-box {
-      display: none;
-      margin-top: 15px;
-      padding: 13px;
-      border-radius: 12px;
-      font-size: 13px;
-      line-height: 1.5;
-      text-align: center;
-      white-space: pre-wrap;
-    }
-
-    .status-info {
-      display: block;
-      background: #eef4ff;
-      color: #1d4ed8;
-    }
-
-    .status-success {
-      display: block;
-      background: #ecfdf5;
-      color: #047857;
-    }
-
-    .status-error {
-      display: block;
-      background: #fef2f2;
-      color: #b91c1c;
-    }
-
-    .success-box {
-      display: none;
-      margin-top: 15px;
-      padding: 14px;
-      background: #ecfdf5;
-      color: #047857;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .note-box {
-      margin-top: 14px;
-      padding: 12px;
-      background: #fff7ed;
-      color: #9a3412;
-      border-radius: 12px;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-  </style>
-</head>
-
+.tutorial-grid{display:grid;gap:11px}.tutorial-card{background:#fff;border:1px solid var(--border);border-radius:19px;padding:14px;box-shadow:var(--shadow)}.tutorial-step{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:start}.step-num{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#635bff,#1685ff);color:#fff;display:grid;place-items:center;font-weight:900}.tutorial-card h3{font-size:15px;margin-bottom:5px}.tutorial-card p{font-size:11px;line-height:1.55;color:var(--muted)}.tutorial-visual{margin-top:11px;border:1px solid rgba(99,91,255,.14);border-radius:15px;padding:10px;background:linear-gradient(145deg,#f8f8ff,#fff4f7);overflow:hidden}.phone-demo{width:150px;margin:auto;border:5px solid #17172b;border-radius:24px;background:#fff;padding:8px;box-shadow:0 8px 18px rgba(20,20,50,.12)}.phone-demo .bar{height:8px;width:45%;background:#e9e9ef;margin:2px auto 9px;border-radius:99px}.phone-demo .demo-line{height:8px;background:#ececf5;border-radius:99px;margin:7px 0}.phone-demo .demo-btn{height:28px;border-radius:9px;background:linear-gradient(135deg,#635bff,#1685ff);margin-top:10px}.account-modal{position:fixed;inset:0;z-index:120;background:rgba(12,15,35,.48);display:none;align-items:flex-end;justify-content:center;padding:10px}.account-modal.open{display:flex}.account-sheet{width:min(100%,520px);max-height:88vh;overflow:auto;background:#fff;border-radius:24px;padding:17px;box-shadow:0 20px 60px rgba(0,0,0,.22)}.account-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.account-head h3{font-size:17px}.close-account{width:35px;height:35px;border:1px solid var(--border);background:#fff;border-radius:12px}.benefits{display:grid;gap:7px;margin:12px 0}.benefit{display:flex;gap:8px;align-items:flex-start;background:#f8f8ff;border:1px solid rgba(99,91,255,.10);padding:9px;border-radius:13px;font-size:11px}.account-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.account-btn{border:0;border-radius:13px;padding:12px;font-weight:900}.account-btn.tg{background:#e8f5ff;color:#1685ff}.account-btn.phone{background:#f2f1ff;color:#635bff}.account-note{font-size:9px;color:var(--muted);line-height:1.5;margin-top:10px}.verified-badge{display:inline-flex;align-items:center;gap:4px;color:#1677ff;font-size:11px;font-weight:900;margin-left:5px}.profile-status{font-size:10px;color:var(--muted);margin-top:4px}.profile-account-btn{margin-top:11px;width:100%;border:0;border-radius:14px;padding:12px;background:linear-gradient(135deg,#635bff,#1685ff);color:#fff;font-weight:900}
+@media(max-width:370px){.brand-name{font-size:16px}.brand-icon{width:36px;height:36px}.tool{width:35px;height:35px}.search-box{height:49px}.slide{height:180px}.slide h2{font-size:22px}.slide p{font-size:11px}.container{padding-left:10px;padding-right:10px}}
+</style></head>
 <body>
-
-  <div class="header">
-    <h1>🔥 Ad2Reward</h1>
-    <p>Rewarded বিজ্ঞাপন দেখে ভিডিও আনলক করুন</p>
-  </div>
-
-  <div class="container">
-
-    <div class="section-title">
-      🎬 আজকের Viral Video
-    </div>
-
-    <div class="video-card">
-
-      <img
-        class="thumbnail"
-        src="https://placehold.co/800x450/png?text=Viral+Video"
-        alt="Viral Video"
-      >
-
-      <div class="video-info">
-
-        <div class="badge">
-          🔒 Ad Watch Required
-        </div>
-
-        <div class="video-title">
-          🔥 Trending Viral Video
-        </div>
-
-        <div class="video-description">
-          ভিডিওটি আনলক করতে ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণভাবে দেখতে হবে।
-          বিজ্ঞাপনের offer-এ click বা purchase করার প্রয়োজন নেই।
-        </div>
-
-        <button
-          id="unlockBtn"
-          class="unlock-btn"
-          type="button"
-          onclick="startUnlock()"
-        >
-          🔓 ভিডিও আনলক করুন
-        </button>
-
-        <div
-          class="progress-box"
-          id="progressBox"
-        >
-
-          <div
-            class="progress-text"
-            id="progressText"
-          >
-            বিজ্ঞাপন: 0 / 3
-          </div>
-
-          <div class="progress-bg">
-            <div
-              class="progress-bar"
-              id="progressBar"
-            ></div>
-          </div>
-
-        </div>
-
-        <div
-          id="statusBox"
-          class="status-box"
-        ></div>
-
-        <div
-          class="success-box"
-          id="successBox"
-        >
-          🎉 ৩টি বিজ্ঞাপন সম্পূর্ণ হয়েছে!
-          <br><br>
-          এখন ভিডিও আনলক করা যাবে।
-        </div>
-
-        <div class="note-box">
-          ℹ️ Rewarded বিজ্ঞাপন সম্পূর্ণ করার পর পরবর্তী বিজ্ঞাপন দেখার
-          সুযোগ পাবেন।
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-  <script>
-
-    /* =========================================
-       TELEGRAM MINI APP
-    ========================================= */
-
-    const tg =
-      window.Telegram &&
-      window.Telegram.WebApp
-        ? window.Telegram.WebApp
-        : null;
-
-    if (tg) {
-      try {
-        tg.ready();
-        tg.expand();
-      } catch (error) {
-        console.log("Telegram WebApp error:", error);
-      }
-    }
-
-
-    /* =========================================
-       SETTINGS
-    ========================================= */
-
-    const MONETAG_ZONE = "11748430";
-    const TOTAL_ADS = 3;
-
-    let adsWatched = 0;
-    let isWatching = false;
-
-
-    /* =========================================
-       DOM ELEMENTS
-    ========================================= */
-
-    const unlockBtn =
-      document.getElementById("unlockBtn");
-
-    const progressBox =
-      document.getElementById("progressBox");
-
-    const progressText =
-      document.getElementById("progressText");
-
-    const progressBar =
-      document.getElementById("progressBar");
-
-    const statusBox =
-      document.getElementById("statusBox");
-
-    const successBox =
-      document.getElementById("successBox");
-
-
-    /* =========================================
-       STATUS MESSAGE
-    ========================================= */
-
-    function showInfo(message) {
-
-      statusBox.className =
-        "status-box status-info";
-
-      statusBox.textContent = message;
-    }
-
-
-    function showSuccess(message) {
-
-      statusBox.className =
-        "status-box status-success";
-
-      statusBox.textContent = message;
-    }
-
-
-    function showError(message) {
-
-      statusBox.className =
-        "status-box status-error";
-
-      statusBox.textContent = message;
-    }
-
-
-    /* =========================================
-       PROGRESS
-    ========================================= */
-
-    function updateProgress() {
-
-      const percent =
-        (adsWatched / TOTAL_ADS) * 100;
-
-      progressBar.style.width =
-        percent + "%";
-
-      progressText.textContent =
-        "বিজ্ঞাপন: " +
-        adsWatched +
-        " / " +
-        TOTAL_ADS;
-    }
-
-
-    /* =========================================
-       CREATE UNIQUE YMID
-    ========================================= */
-
-    function createYmid() {
-
-      return (
-        "ad2reward-" +
-        Date.now() +
-        "-" +
-        Math.random()
-          .toString(36)
-          .substring(2, 10)
-      );
-    }
-
-
-    /* =========================================
-       WAIT FOR MONETAG SDK
-    ========================================= */
-
-    function waitForMonetag(timeout = 10000) {
-
-      return new Promise(
-        function(resolve, reject) {
-
-          const start =
-            Date.now();
-
-          function check() {
-
-            const functionName =
-              "show_" + MONETAG_ZONE;
-
-            if (
-              typeof window[functionName] ===
-              "function"
-            ) {
-
-              resolve(
-                window[functionName]
-              );
-
-              return;
-            }
-
-            if (
-              Date.now() - start >=
-              timeout
-            ) {
-
-              reject(
-                new Error(
-                  "Monetag SDK load হয়নি"
-                )
-              );
-
-              return;
-            }
-
-            setTimeout(
-              check,
-              250
-            );
-          }
-
-          check();
-        }
-      );
-    }
-
-
-    /* =========================================
-       START REWARDED AD
-    ========================================= */
-
-    async function startUnlock() {
-
-      if (isWatching) {
-        return;
-      }
-
-      if (adsWatched >= TOTAL_ADS) {
-        return;
-      }
-
-
-      isWatching = true;
-
-      unlockBtn.disabled = true;
-
-      progressBox.style.display =
-        "block";
-
-      successBox.style.display =
-        "none";
-
-
-      const adNumber =
-        adsWatched + 1;
-
-
-      showInfo(
-        "⏳ বিজ্ঞাপন " +
-        adNumber +
-        " / " +
-        TOTAL_ADS +
-        " লোড হচ্ছে..."
-      );
-
-
-      try {
-
-        /* Wait for Monetag SDK */
-
-        const showAd =
-          await waitForMonetag();
-
-
-        /* Unique event ID */
-
-        const ymid =
-          createYmid();
-
-
-        showInfo(
-          "⏳ বিজ্ঞাপন " +
-          adNumber +
-          " / " +
-          TOTAL_ADS +
-          " শুরু হচ্ছে..."
-        );
-
-
-        /*
-         * IMPORTANT:
-         * type = end
-         *
-         * Reward is counted ONLY
-         * after the ad is completed.
-         *
-         * catchIfNoFeed = true
-         * means no ad feed will not
-         * be counted as a reward.
-         */
-
-        const result =
-          await showAd({
-
-            type: "end",
-
-            ymid: ymid,
-
-            requestVar:
-              "unlock_ad",
-
-            catchIfNoFeed: true
-
-          });
-
-
-        console.log(
-          "Monetag Rewarded result:",
-          result
-        );
-
-
-        /* =====================================
-           AD SUCCESSFULLY COMPLETED
-        ===================================== */
-
-        adsWatched++;
-
-        updateProgress();
-
-
-        if (
-          adsWatched < TOTAL_ADS
-        ) {
-
-          showSuccess(
-            "✅ বিজ্ঞাপন " +
-            adsWatched +
-            " / " +
-            TOTAL_ADS +
-            " সম্পূর্ণ হয়েছে।"
-          );
-
-          unlockBtn.disabled =
-            false;
-
-          unlockBtn.textContent =
-            "▶️ বিজ্ঞাপন " +
-            (adsWatched + 1) +
-            " / " +
-            TOTAL_ADS +
-            " দেখুন";
-
-        } else {
-
-          /* ===================================
-             ALL ADS COMPLETED
-          =================================== */
-
-          progressBar.style.width =
-            "100%";
-
-          progressText.textContent =
-            TOTAL_ADS +
-            " / " +
-            TOTAL_ADS;
-
-          showSuccess(
-            "🎉 অভিনন্দন! " +
-            TOTAL_ADS +
-            "টি Rewarded বিজ্ঞাপন সম্পূর্ণ হয়েছে।"
-          );
-
-          successBox.style.display =
-            "block";
-
-          unlockBtn.disabled =
-            false;
-
-          unlockBtn.textContent =
-            "🎬 ভিডিও আনলক করুন";
-
-          unlockBtn.onclick =
-            unlockVideo;
-        }
-
-
-      } catch (error) {
-
-        /* =====================================
-           AD ERROR
-        ===================================== */
-
-        console.error(
-          "Monetag Rewarded Ad Error:",
-          error
-        );
-
-
-        let reason =
-          "অজানা সমস্যা";
-
-
-        if (
-          error &&
-          error.message
-        ) {
-
-          reason =
-            error.message;
-
-        } else if (
-          typeof error ===
-          "string"
-        ) {
-
-          reason =
-            error;
-        }
-
-
-        showError(
-          "⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি।\n\n" +
-          "কারণ: " +
-          reason
-        );
-
-
-        /*
-         * IMPORTANT:
-         * Failed ad is NOT counted.
-         */
-
-        unlockBtn.disabled =
-          false;
-
-        unlockBtn.textContent =
-          "🔄 আবার বিজ্ঞাপন দেখুন";
-
-
-      } finally {
-
-        isWatching = false;
-
-      }
-    }
-
-
-    /* =========================================
-       VIDEO UNLOCK
-       ========================================= */
-
-    function unlockVideo() {
-
-      if (
-        adsWatched !== TOTAL_ADS
-      ) {
-
-        showError(
-          "⚠️ আগে " +
-          TOTAL_ADS +
-          "টি বিজ্ঞাপন সম্পূর্ণ করুন।"
-        );
-
-        return;
-      }
-
-
-      /*
-       * TEST MODE ONLY
-       *
-       * এখানে এখনো backend
-       * verification যুক্ত হয়নি।
-       */
-
-      showSuccess(
-        "🎬 ভিডিও আনলক হচ্ছে..."
-      );
-
-      unlockBtn.disabled =
-        true;
-
-
-      setTimeout(
-        function() {
-
-          showSuccess(
-            "🎉 ভিডিও আনলক সফল হয়েছে!\n\n" +
-            "Backend verification যুক্ত হলে এখানে আসল ভিডিও চালু হবে।"
-          );
-
-          unlockBtn.textContent =
-            "▶️ ভিডিও দেখুন";
-
-          unlockBtn.disabled =
-            false;
-
-        },
-        800
-      );
-    }
-
-
-    /* =========================================
-       INITIAL STATE
-    ========================================= */
-
-    updateProgress();
-
-  </script>
-
-</body>
-  </html>
+<div class="app">
+<header class="site-header"><div class="header-inner"><div class="top-row">
+<div class="brand"><div class="brand-icon">🔥</div><div class="brand-name" id="brandName">মায়া</div></div>
+<div class="search-wrap" id="searchWrap"><div class="search-box"><span>🔎</span><input id="searchInput" type="search" placeholder="ভিডিও বা ক্যাটাগরি খুঁজুন..." oninput="searchContent(this.value)"><button id="clearSearch" class="clear" onclick="clearSearch()">✕</button></div><div id="searchResults"></div></div>
+<div class="tools"><button class="tool lang" id="langToggle" onclick="toggleLang()">EN</button><button class="tool notify" onclick="notify()">🔔</button><button class="tool menu" onclick="toggleDrawer()">☰</button></div></div>
+<div id="drawer" class="drawer">
+<button class="layout-item first" onclick="menuAction('earn')"><div class="layout-thumb">💰</div><div class="layout-title" id="mEarn">বিজ্ঞাপন দেখে আয়</div></button>
+<button class="layout-item" onclick="menuAction('all')"><div class="layout-thumb">🗂️</div><div class="layout-title" id="mAll">সকল ক্যাটাগরি</div></button>
+<button class="layout-item" onclick="menuAction('upload')"><div class="layout-thumb">⬆️</div><div class="layout-title" id="mUpload">ভিডিও আপলোড</div></button>
+<button class="layout-item" onclick="menuAction('request')"><div class="layout-thumb">📩</div><div class="layout-title" id="mRequest">ভিডিও রিকুয়েষ্ট</div></button>
+<button class="layout-item" onclick="menuAction('chat')"><div class="layout-thumb">💬</div><div class="layout-title" id="mChat">লাইভ চ্যাট</div></button>
+</div></div></header>
+<div id="langToast" class="lang-toast"></div>
+<section class="hero" id="hero"><div class="slider"><div class="track" id="track"></div><button class="arrow left" onclick="prevSlide()">‹</button><button class="arrow right" onclick="nextSlide()">›</button><div class="dots" id="dots"></div></div></section>
+<main class="container">
+<section id="homePage" class="page active"><div class="category-grid">
+<button class="cat active" onclick="selectMain('trending')"><span class="cat-icon">🔥</span><span class="cat-name" data-bn="ট্রেন্ডিং" data-en="Trending">ট্রেন্ডিং</span><small class="cat-sub" data-bn="জনপ্রিয়" data-en="Popular">জনপ্রিয়</small></button>
+<button class="cat" onclick="selectMain('popular')"><span class="cat-icon">⭐</span><span class="cat-name" data-bn="জনপ্রিয়" data-en="Popular">জনপ্রিয়</span><small class="cat-sub" data-bn="সবচেয়ে বেশি দেখা" data-en="Most viewed">সবচেয়ে বেশি দেখা</small></button>
+<button class="cat" onclick="openLatest()"><span class="cat-icon">🆕</span><span class="cat-name" data-bn="লেটেস্ট" data-en="Latest">লেটেস্ট</span><small class="cat-sub" data-bn="নতুন ভিডিও" data-en="New videos">নতুন ভিডিও</small></button>
+<button class="cat" onclick="selectMain('viral')"><span class="cat-icon">🚀</span><span class="cat-name" data-bn="ভাইরাল" data-en="Viral">ভাইরাল</span><small class="cat-sub" data-bn="ভাইরাল ভিডিও" data-en="Viral videos">ভাইরাল ভিডিও</small></button>
+</div>
+<div class="section-head"><h3 id="featuredTitle">🎬 আজকের Viral Video</h3><span id="featuredTag">Featured</span></div>
+<div class="video"><div class="thumb">Viral Video<button class="fav" onclick="toggleFavorite()" id="favBtn">♡</button><span class="view">👁️ <span id="views">0</span> views</span></div><div class="info"><div class="meta"><span class="badge" id="adBadge">🔒 Ad Watch Required</span><span id="favCount">❤️ 0</span></div><div class="title" id="videoTitle">🔥 Trending Viral Video</div><div class="desc" id="videoDesc">ভিডিওটি আনলক করতে ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণভাবে দেখতে হবে।</div><button class="unlock" id="unlockBtn" onclick="startUnlock()">🔓 বিজ্ঞাপন দেখে ভিডিও আনলক করুন</button><div class="progress" id="progress"><div class="progress-text" id="progressText">বিজ্ঞাপন: 0 / 3</div><div class="barbg"><div class="bar" id="bar"></div></div></div><div class="status" id="status"></div></div></div>
+</section>
+<section id="latestPage" class="page"><div class="latest-head"><button class="back" onclick="goHome()">‹</button><div><h2 id="latestTitle">🆕 Latest</h2><p id="latestSub">আপনার পছন্দের ক্যাটাগরি বেছে নিন</p></div></div><div class="subgrid" id="subgrid"></div><div class="section-head"><h3 id="latestContentTitle">🎬 সব নতুন ভিডিও</h3><span id="latestCount">10 Categories</span></div><div class="video"><div class="thumb">Latest Content</div><div class="info"><div class="title" id="latestVideoTitle">🆕 Latest Video</div><div class="desc" id="latestVideoDesc">এই ক্যাটাগরির ভিডিও দেখতে Rewarded বিজ্ঞাপন সম্পূর্ণ করুন।</div><button class="unlock" onclick="startLatestUnlock()" id="latestUnlock">🔓 বিজ্ঞাপন দেখে ভিডিও আনলক করুন</button><div class="status" id="latestStatus"></div></div></div></section>
+<section id="allPage" class="page"><div class="latest-head"><button class="back" onclick="goHome()">‹</button><div><h2 id="allTitle">🗂️ সকল ভিডিও</h2><p id="allSub">ক্যাটাগরি বেছে নিয়ে ভিডিও দেখুন</p></div></div><div class="subgrid" id="allGrid"></div><div class="section-head"><h3 id="allContentTitle">🎬 সকল ভিডিও</h3><span id="allCount">১০টি ক্যাটাগরি</span></div><div class="video"><div class="thumb">All Videos</div><div class="info"><div class="title" id="allVideoTitle">🎬 আপনার পছন্দের ভিডিও</div><div class="desc" id="allVideoDesc">যেকোনো ভিডিও দেখতে Rewarded বিজ্ঞাপন সম্পূর্ণ করে আনলক করুন।</div><button class="unlock" onclick="startAllUnlock()" id="allUnlock">🔓 বিজ্ঞাপন দেখে ভিডিও আনলক করুন</button><div class="status" id="allStatus"></div></div></div></section>
+<section id="favPage" class="page"><div class="section-head"><h3 id="favTitle">❤️ Favorites</h3></div><div id="favEmpty" class="empty">আপনার কোনো Favorite ভিডিও নেই।</div><div id="favSaved" class="video hide"><div class="thumb">Saved Video</div><div class="info"><div class="title">🔥 Trending Viral Video</div><div class="desc">আপনার Favorite ভিডিও।</div></div></div></section>
+<section id="tutorialPage" class="page"><div class="latest-head"><button class="back" onclick="goHome()">‹</button><div><h2 id="tutorialTitle">📘 টিউটোরিয়াল</h2><p id="tutorialSub">ভিডিও দেখার সহজ নিয়ম</p></div></div><div class="tutorial-grid">
+<div class="tutorial-card"><div class="tutorial-step"><div class="step-num">1</div><div><h3 id="t1h">ভিডিও বেছে নিন</h3><p id="t1p">হোম, Trending, Popular, Latest বা All Video থেকে আপনার পছন্দের ভিডিও/ক্যাটাগরি নির্বাচন করুন।</p></div></div></div>
+<div class="tutorial-card"><div class="tutorial-step"><div class="step-num">2</div><div><h3 id="t2h">Rewarded বিজ্ঞাপন দেখুন</h3><p id="t2p">ভিডিও আনলক করতে প্রয়োজনীয় Rewarded বিজ্ঞাপন সম্পূর্ণভাবে দেখুন। বিজ্ঞাপন সম্পূর্ণ না হলে আনলক হবে না।</p></div></div><div class="tutorial-visual"><div class="phone-demo"><div class="bar"></div><div class="demo-line"></div><div class="demo-line"></div><div class="demo-btn"></div></div></div></div>
+<div class="tutorial-card"><div class="tutorial-step"><div class="step-num">3</div><div><h3 id="t3h">ভিডিও আনলক করুন</h3><p id="t3p">সব প্রয়োজনীয় বিজ্ঞাপন সম্পূর্ণ হলে Watch Video/ভিডিও দেখুন বাটনে চাপুন। Backend verification যুক্ত হলে আসল ভিডিও তখনই দেওয়া হবে।</p></div></div></div>
+<div class="tutorial-card"><div class="tutorial-step"><div class="step-num">4</div><div><h3 id="t4h">নিরাপদভাবে ব্যবহার করুন</h3><p id="t4p">শুধু অনুমোদিত/নিজস্ব কনটেন্ট দেখুন। বিজ্ঞাপনে জোর করে ক্লিক করার প্রয়োজন নেই।</p></div></div></div>
+</div></section>
+<section id="profilePage" class="page"><div class="section-head"><h3 id="profileTitle">👤 প্রোফাইল</h3></div><div class="profile-box"><div class="avatar" id="avatar">👤</div><div><div class="pname" id="profileName">Telegram User</div><div class="verify" id="verify">ভেরিফিকেশন: <b>NO</b></div><div class="profile-status" id="accountStatus">একাউন্ট নেই</div></div></div><button class="profile-account-btn" id="profileAccountBtn" onclick="openAccountDialog()">✨ একাউন্ট খুলুন</button><div class="actions"><button class="action" onclick="balance()"><span>💰</span><div><b id="balanceTitle">ব্যালেন্স চেক</b><small id="balanceSub">বর্তমান ব্যালেন্স: ০</small></div><i>›</i></button><button class="action" onclick="settings()"><span>⚙️</span><div><b id="settingsTitle">সেটিংস</b><small id="settingsSub">অ্যাপের পছন্দ</small></div><i>›</i></button><button class="action" onclick="logout()"><span>🚪</span><div><b id="logoutTitle">লগ আউট</b><small id="logoutSub">সেশন শেষ করুন</small></div><i>›</i></button></div></section>
+</main>
+<nav class="bottom"><div class="nav"><button id="nHome" class="active" onclick="showPage('home')"><b>🏠</b><span id="nHomeText">Home</span></button><button id="nTutorial" onclick="showPage('tutorial')"><b>📘</b><span id="nTutorialText">Tutorial</span></button><button id="nFav" onclick="showPage('fav')"><b>❤️</b><span id="nFavText">Favorites</span></button><button id="nProfile" onclick="showPage('profile')"><b>👤</b><span id="nProfileText">Profile</span></button></div></nav>
+</div>
+<div id="accountModal" class="account-modal" onclick="if(event.target===this)closeAccountDialog()"><div class="account-sheet"><div class="account-head"><h3 id="accountDialogTitle">✨ মোহ-মায়ায় একাউন্ট খুলুন</h3><button class="close-account" onclick="closeAccountDialog()">✕</button></div><p class="account-note" id="accountDialogSub">একাউন্ট থাকলে আপনার প্রোফাইল, ব্যালেন্স, ফেভারিট, রিওয়ার্ড ও ভবিষ্যতের ব্যক্তিগত সুবিধাগুলো এক জায়গা থেকে পরিচালনা করতে পারবেন।</p><div class="benefits"><div class="benefit">👤 <span id="benefit1">নিজস্ব প্রোফাইল ও ভেরিফিকেশন স্ট্যাটাস</span></div><div class="benefit">💰 <span id="benefit2">ব্যালেন্স ও রিওয়ার্ড হিসাব দেখা</span></div><div class="benefit">❤️ <span id="benefit3">ফেভারিট ভিডিও সংরক্ষণ</span></div><div class="benefit">🎬 <span id="benefit4">আনলক করা কনটেন্টের ব্যক্তিগত সুবিধা</span></div></div><div class="tutorial-visual"><div class="phone-demo"><div class="bar"></div><div class="demo-line"></div><div class="demo-line"></div><div class="demo-line"></div><div class="demo-btn"></div></div><div style="text-align:center;font-size:10px;color:var(--muted);margin-top:8px" id="accountImageCaption">Telegram/Phone নির্বাচন → তথ্য দিন → Verify করুন → একাউন্ট তৈরি</div></div><div class="account-actions" style="margin-top:12px"><button class="account-btn tg" onclick="createTelegramAccount()" id="createTg">✈️ Telegram দিয়ে</button><button class="account-btn phone" onclick="openPhone()" id="createPhone">📱 Phone দিয়ে</button></div></div></div><div id="phoneModal" class="modal" onclick="if(event.target===this)closePhone()"><div class="sheet"><button class="close" onclick="closePhone()">✕</button><h3 id="phoneTitle">📱 ফোন দিয়ে একাউন্ট</h3><p id="phoneSub">আপনার নম্বর দিন। OTP verification পরে Backend-এর মাধ্যমে যুক্ত হবে।</p><input class="phone-input" id="phoneInput" type="tel" placeholder="01XXXXXXXXX"><button class="sheet-btn" onclick="requestPhone()" id="phoneContinue">Continue</button></div></div>
+<script>
+const TOTAL_ADS=3, ZONE='11748430';
+const slides=[
+ {title:'আজকের ট্রেন্ডিং ভিডিও দেখুন ✨',sub:'জনপ্রিয় ভিডিও দেখতে Rewarded বিজ্ঞাপন সম্পূর্ণ করুন।',k:'TRENDING',bg:'linear-gradient(135deg,#245fff,#f05a8d)'},
+ {title:'নতুন ভিডিও প্রতিদিন 🆕',sub:'Latest-এর ১০টি ক্যাটাগরি থেকে পছন্দের কনটেন্ট বেছে নিন।',k:'LATEST',bg:'linear-gradient(135deg,#1685ff,#7c5cff)'},
+ {title:'জনপ্রিয় কনটেন্ট এক জায়গায় ⭐',sub:'Popular ভিডিওগুলো দ্রুত খুঁজে নিন।',k:'POPULAR',bg:'linear-gradient(135deg,#4777ff,#ff7b54)'},
+ {title:'ভাইরাল ভিডিও এখনই দেখুন 🚀',sub:'বিজ্ঞাপন সম্পূর্ণ করে ভিডিও আনলক করুন।',k:'VIRAL',bg:'linear-gradient(135deg,#5b4bff,#ff4d8d)'},
+ {title:'Watch • Unlock • Enjoy 🎬',sub:'আপনার পছন্দের ভিডিওর নতুন অভিজ্ঞতা।',k:'MOHO-MAYA',bg:'linear-gradient(135deg,#1d78ff,#e94d9a)'}
+];
+const latest=[['news','📰','নিউজ','নতুন খবর','#eef3ff'],['funny','😂','ফানি','মজার ভিডিও','#fff3df'],['sports','⚽','স্পোর্টস','খেলার ভিডিও','#eaf9ef'],['music','🎵','মিউজিক','গান ও মিউজিক','#f5eaff'],['tech','📱','টেক','টেক ভিডিও','#eaf8ff'],['gaming','🎮','গেমিং','গেমিং ভিডিও','#f0eaff'],['food','🍔','ফুড','খাবারের ভিডিও','#fff0e8'],['travel','✈️','ট্রাভেল','ভ্রমণের ভিডিও','#eaf9ff'],['lifestyle','✨','লাইফস্টাইল','লাইফস্টাইল','#fff0f7'],['education','📚','শিক্ষা','শিক্ষামূলক ভিডিও','#eef7e9']];
+let lang=localStorage.getItem('appLang')||'bn', idx=0, timer=null, speed=3, watched=0, favorite=localStorage.getItem('mohoFav')==='1', hasAccount=localStorage.getItem('mohoAccount')==='1';
+const $=id=>document.getElementById(id);
+function renderSlider(){const t=$('track'),d=$('dots');t.innerHTML=slides.map(s=>`<article class="slide" style="background:${s.bg}"><div class="overlay"></div><div class="slide-content bottom"><span class="kicker">${s.k}</span><h2>${s.title}</h2><p>${s.sub}</p></div></article>`).join('');d.innerHTML=slides.map((_,i)=>`<button class="dot ${i===0?'active':''}" onclick="goSlide(${i})"></button>`).join('');goSlide(0)}
+function goSlide(n){idx=(n+slides.length)%slides.length;$('track').style.transform=`translate3d(-${idx*100}%,0,0)`;document.querySelectorAll('.dot').forEach((x,i)=>x.classList.toggle('active',i===idx));clearInterval(timer);timer=setInterval(()=>goSlide(idx+1),speed*1000)}function nextSlide(){goSlide(idx+1)}function prevSlide(){goSlide(idx-1)}
+let sx=0;function setupSwipe(){const t=$('track');t.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});t.addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)(dx<0?nextSlide:prevSlide)()},{passive:true})}
+function toggleLang(){lang=lang==='bn'?'en':'bn';localStorage.setItem('appLang',lang);applyLang();$('langToast').textContent=lang==='en'?'English selected':'বাংলা নির্বাচন করা হয়েছে';$('langToast').style.display='block';setTimeout(()=>$('langToast').style.display='none',900)}
+function applyLang(){
+ const en=lang==='en';
+ document.documentElement.lang=en?'en':'bn';
+ $('brandName').textContent=en?'Maya':'মায়া';
+ document.title=en?'Maya':'মায়া';
+ $('langToggle').textContent=en?'BN':'EN';
+ $('searchInput').placeholder=en?'Find':'খুজুন';
+ $('mEarn').textContent=en?'Watch & Earn':'বিজ্ঞাপন দেখে আয়';
+ $('mAll').textContent=en?'All Video':'সকল ক্যাটাগরি';
+ $('mUpload').textContent=en?'Upload Content':'ভিডিও আপলোড';
+ $('mRequest').textContent=en?'Request Content':'ভিডিও রিকুয়েষ্ট';
+ $('mChat').textContent=en?'Live Support':'লাইভ চ্যাট';
+ $('featuredTitle').textContent=en?'🎬 Today’s Viral Video':'🎬 আজকের Viral Video';
+ $('featuredTag').textContent=en?'Featured':'ফিচার্ড';
+ $('adBadge').textContent=en?'🔒 Ad Watch Required':'🔒 Ad Watch Required';
+ $('videoTitle').textContent=en?'🔥 Trending Viral Video':'🔥 Trending Viral Video';
+ $('videoDesc').textContent=en?'Watch 3 Rewarded ads completely to unlock this video.':'ভিডিওটি আনলক করতে ৩টি Rewarded বিজ্ঞাপন সম্পূর্ণভাবে দেখতে হবে।';
+ $('unlockBtn').textContent=en?'🔓 Watch ads to unlock':'🔓 বিজ্ঞাপন দেখে ভিডিও আনলক করুন';
+ $('favTitle').textContent=en?'❤️ Favorites':'❤️ ফেভারিট';
+ $('favEmpty').textContent=en?'You have no favorite videos.':'আপনার কোনো Favorite ভিডিও নেই।';
+ $('latestTitle').textContent=en?'🆕 Latest':'🆕 লেটেস্ট';
+ $('latestSub').textContent=en?'Choose a category':'আপনার পছন্দের ক্যাটাগরি বেছে নিন';
+ $('latestCount').textContent=en?'10 Categories':'১০টি ক্যাটাগরি';
+ $('latestVideoDesc').textContent=en?'Complete Rewarded ads to unlock videos in this category.':'এই ক্যাটাগরির ভিডিও দেখতে Rewarded বিজ্ঞাপন সম্পূর্ণ করুন।';
+ $('latestUnlock').textContent=en?'🔓 Watch ads to unlock':'🔓 বিজ্ঞাপন দেখে ভিডিও আনলক করুন';
+ $('profileTitle').textContent=en?'👤 Profile':'👤 প্রোফাইল';
+ $('balanceTitle').textContent=en?'Balance Check':'ব্যালেন্স চেক';
+ $('balanceSub').textContent=en?'Current balance: 0':'বর্তমান ব্যালেন্স: ০';
+ $('settingsTitle').textContent=en?'Settings':'সেটিংস';
+ $('settingsSub').textContent=en?'App preferences':'অ্যাপের পছন্দ';
+ $('logoutTitle').textContent=en?'Log out':'লগ আউট';
+ $('logoutSub').textContent=en?'End this session':'সেশন শেষ করুন';
+ $('phoneTitle').textContent=en?'📱 Create with phone':'📱 ফোন দিয়ে একাউন্ট';
+ $('phoneSub').textContent=en?'Enter your number. OTP verification will be connected through the backend.':'আপনার নম্বর দিন। OTP verification পরে Backend-এর মাধ্যমে যুক্ত হবে।';
+ $('phoneContinue').textContent=en?'Continue':'চালিয়ে যান';
+ $('nHomeText').textContent=en?'Home':'হোম';
+ $('nTutorialText').textContent=en?'Tutorial':'টিউটোরিয়াল';
+ $('nFavText').textContent=en?'Favorites':'ফেভারিট';
+ $('nProfileText').textContent=en?'Profile':'প্রোফাইল';
+ $('allTitle').textContent=en?'🗂️ All Video':'🗂️ সকল ভিডিও';
+ $('allSub').textContent=en?'Choose a category to watch videos':'ক্যাটাগরি বেছে নিয়ে ভিডিও দেখুন';
+ $('allCount').textContent=en?'10 Categories':'১০টি ক্যাটাগরি';
+ $('allContentTitle').textContent=en?'🎬 All Videos':'🎬 সকল ভিডিও';
+ $('allVideoTitle').textContent=en?'🎬 Your selected video':'🎬 আপনার পছন্দের ভিডিও';
+ $('allVideoDesc').textContent=en?'Complete a Rewarded ad to unlock and watch the selected video.':'যেকোনো ভিডিও দেখতে Rewarded বিজ্ঞাপন সম্পূর্ণ করে আনলক করুন।';
+ $('allUnlock').textContent=en?'🔓 Watch ads to unlock':'🔓 বিজ্ঞাপন দেখে ভিডিও আনলক করুন';
+ $('profileAccountBtn').textContent=hasAccount?(en?'✓ Account Active':'✓ একাউন্ট চালু'):(en?'✨ Create account':'✨ একাউন্ট খুলুন');
+ $('profileAccountBtn').disabled=hasAccount;
+ $('profileAccountBtn').style.opacity=hasAccount?'0.72':'1';
+ $('accountStatus').textContent=en?(hasAccount?'Account active':'No account'):(hasAccount?'একাউন্ট চালু':'একাউন্ট নেই');
+ $('tutorialTitle').textContent=en?'📘 Tutorial':'📘 টিউটোরিয়াল';
+ $('tutorialSub').textContent=en?'How to watch videos':'ভিডিও দেখার সহজ নিয়ম';
+ $('t1h').textContent=en?'Choose a video':'ভিডিও বেছে নিন';
+ $('t1p').textContent=en?'Choose a video or category from Home, Trending, Popular, Latest or All Video.':'হোম, Trending, Popular, Latest বা All Video থেকে আপনার পছন্দের ভিডিও/ক্যাটাগরি নির্বাচন করুন।';
+ $('t2h').textContent=en?'Watch the Rewarded ads':'Rewarded বিজ্ঞাপন দেখুন';
+ $('t2p').textContent=en?'Complete the required Rewarded ads to unlock the video.':'ভিডিও আনলক করতে প্রয়োজনীয় Rewarded বিজ্ঞাপন সম্পূর্ণভাবে দেখুন।';
+ $('t3h').textContent=en?'Unlock the video':'ভিডিও আনলক করুন';
+ $('t3p').textContent=en?'After all required ads are completed, tap Watch Video. Real delivery will be connected after backend verification.':'সব প্রয়োজনীয় বিজ্ঞাপন সম্পূর্ণ হলে ভিডিও দেখুন বাটনে চাপুন। Backend verification যুক্ত হলে আসল ভিডিও তখনই দেওয়া হবে।';
+ $('t4h').textContent=en?'Use safely':'নিরাপদভাবে ব্যবহার করুন';
+ $('t4p').textContent=en?'Use only authorized content. Never force clicks on ads.':'শুধু অনুমোদিত/নিজস্ব কনটেন্ট দেখুন। বিজ্ঞাপনে জোর করে ক্লিক করার প্রয়োজন নেই।';
+ $('accountDialogTitle').textContent=en?'✨ Create your Maya account':'✨ মোহ-মায়ায় একাউন্ট খুলুন';
+ $('accountDialogSub').textContent=en?'With an account you can manage your profile, balance, favorites, rewards and future personal features in one place.':'একাউন্ট থাকলে আপনার প্রোফাইল, ব্যালেন্স, ফেভারিট, রিওয়ার্ড ও ভবিষ্যতের ব্যক্তিগত সুবিধাগুলো এক জায়গা থেকে পরিচালনা করতে পারবেন।';
+ $('benefit1').textContent=en?'Personal profile and verification status':'নিজস্ব প্রোফাইল ও ভেরিফিকেশন স্ট্যাটাস';
+ $('benefit2').textContent=en?'Balance and reward history':'ব্যালেন্স ও রিওয়ার্ড হিসাব দেখা';
+ $('benefit3').textContent=en?'Save favorite videos':'ফেভারিট ভিডিও সংরক্ষণ';
+ $('benefit4').textContent=en?'Personal access to unlocked content':'আনলক করা কনটেন্টের ব্যক্তিগত সুবিধা';
+ $('accountImageCaption').textContent=en?'Choose Telegram/Phone → enter details → Verify → Create account':'Telegram/Phone নির্বাচন → তথ্য দিন → Verify করুন → একাউন্ট তৈরি';
+ $('createTg').textContent=en?'✈️ With Telegram':'✈️ Telegram দিয়ে';
+ $('createPhone').textContent=en?'📱 With Phone':'📱 Phone দিয়ে';
+ updateVerificationUI();
+ document.querySelectorAll('[data-bn]').forEach(e=>e.textContent=e.dataset[en?'en':'bn']);
+ renderLatest();
+ renderAll();
+}
+function toggleDrawer(){$('drawer').classList.toggle('open')}
+function menuAction(id){toggleDrawer();if(id==='earn')showToast(lang==='en'?'Watch & Earn selected':'বিজ্ঞাপন দেখে আয় নির্বাচন করা হয়েছে');else if(id==='all')openAll();else if(id==='upload')showToast(lang==='en'?'Upload Content will open after backend is connected.':'Backend যুক্ত হলে ভিডিও আপলোড চালু হবে।');else if(id==='request')showToast(lang==='en'?'Request Content will open after backend is connected.':'Backend যুক্ত হলে ভিডিও রিকুয়েস্ট চালু হবে।');else showToast(lang==='en'?'Live Support will open after backend is connected.':'Backend যুক্ত হলে লাইভ সাপোর্ট চালু হবে।')}
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));$('searchWrap').style.display=p==='home'?'block':'none';$('hero').style.display=p==='home'?'block':'none';if(p==='home'){$('homePage').classList.add('active');$('nHome').classList.add('active')}if(p==='fav'){$('favPage').classList.add('active');$('nFav').classList.add('active');renderFavorite()}if(p==='tutorial'){$('tutorialPage').classList.add('active');$('nTutorial').classList.add('active')}if(p==='profile'){$('profilePage').classList.add('active');$('nProfile').classList.add('active');loadTelegramUser();if(!hasAccount)setTimeout(openAccountDialog,180)}window.scrollTo({top:0,behavior:'smooth'})}
+function goHome(){showPage('home')}
+function openAll(){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$('allPage').classList.add('active');$('searchWrap').style.display='none';$('hero').style.display='none';document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));renderAll();window.scrollTo({top:0,behavior:'smooth'})}
+function renderAll(){const en=lang==='en';$('allGrid').innerHTML=latest.map((c,i)=>`<button class="subcat ${i===0?'active':''}" onclick="selectAll('${c[0]}',this)"><span class="sublogo" style="background:${c[4]}">${c[1]}</span><span class="subname">${en?({'news':'News','funny':'Funny','sports':'Sports','music':'Music','tech':'Tech','gaming':'Gaming','food':'Food','travel':'Travel','lifestyle':'Lifestyle','education':'Education'}[c[0]]):c[2]}</span><span class="subdesc">${en?({'news':'New news','funny':'Funny videos','sports':'Sports videos','music':'Songs & music','tech':'Tech videos','gaming':'Gaming videos','food':'Food videos','travel':'Travel videos','lifestyle':'Lifestyle','education':'Educational videos'}[c[0]]):c[3]}</span></button>`).join('')}
+function selectAll(id,btn){document.querySelectorAll('#allGrid .subcat').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const c=latest.find(x=>x[0]===id);const names={news:'News',funny:'Funny',sports:'Sports',music:'Music',tech:'Tech',gaming:'Gaming',food:'Food',travel:'Travel',lifestyle:'Lifestyle',education:'Education'};const name=lang==='en'?names[id]:c[2];$('allContentTitle').textContent=c[1]+' '+(lang==='en'?name+' Videos':name+' ভিডিও');$('allVideoTitle').textContent=c[1]+' '+(lang==='en'?name+' Video':name+' ভিডিও')}
+async function startAllUnlock(){const b=$('allUnlock');b.disabled=true;try{const show=await waitForMonetag();await show({type:'end',ymid:ymid(),requestVar:'all_video_unlock',catchIfNoFeed:true});$('allStatus').className='status ok';$('allStatus').textContent=lang==='en'?'🎉 Ad completed. Backend verification will unlock the selected video.':'🎉 বিজ্ঞাপন সম্পূর্ণ হয়েছে। Backend verification-এর পর নির্বাচিত ভিডিও আনলক হবে।';b.textContent=lang==='en'?'▶️ Watch video':'▶️ ভিডিও দেখুন'}catch(e){$('allStatus').className='status err';$('allStatus').textContent=(lang==='en'?'⚠️ ':'⚠️ ')+(e.message||'Ad failed');b.disabled=false}}
+function openLatest(){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$('latestPage').classList.add('active');$('searchWrap').style.display='none';$('hero').style.display='none';document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));renderLatest();window.scrollTo({top:0,behavior:'smooth'})}
+function renderLatest(){const en=lang==='en';$('subgrid').innerHTML=latest.map((c,i)=>`<button class="subcat ${i===0?'active':''}" onclick="selectLatest('${c[0]}',this)"><span class="sublogo" style="background:${c[4]}">${c[1]}</span><span class="subname">${en?({'news':'News','funny':'Funny','sports':'Sports','music':'Music','tech':'Tech','gaming':'Gaming','food':'Food','travel':'Travel','lifestyle':'Lifestyle','education':'Education'}[c[0]]):c[2]}</span><span class="subdesc">${en?({'news':'New news','funny':'Funny videos','sports':'Sports videos','music':'Songs & music','tech':'Tech videos','gaming':'Gaming videos','food':'Food videos','travel':'Travel videos','lifestyle':'Lifestyle','education':'Educational videos'}[c[0]]):c[3]}</span></button>`).join('')}
+function selectLatest(id,btn){document.querySelectorAll('.subcat').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const c=latest.find(x=>x[0]===id);const name=lang==='en'?({news:'News',funny:'Funny',sports:'Sports',music:'Music',tech:'Tech',gaming:'Gaming',food:'Food',travel:'Travel',lifestyle:'Lifestyle',education:'Education'}[id]):c[2];$('latestContentTitle').textContent=c[1]+' '+(lang==='en'?name+' Videos':name+' ভিডিও');$('latestVideoTitle').textContent=c[1]+' '+(lang==='en'?name+' Latest Video':name+' Latest Video')}
+function selectMain(id){showToast(lang==='en'?id.charAt(0).toUpperCase()+id.slice(1)+' selected':(id==='trending'?'ট্রেন্ডিং':id==='popular'?'জনপ্রিয়':'ভাইরাল')+' নির্বাচন করা হয়েছে')}
+function toggleFavorite(){favorite=!favorite;localStorage.setItem('mohoFav',favorite?'1':'0');renderFavorite();showToast(favorite?(lang==='en'?'❤️ Added to Favorites':'❤️ Favorites-এ যোগ হয়েছে'):(lang==='en'?'💔 Removed from Favorites':'💔 Favorites থেকে সরানো হয়েছে'))}
+function renderFavorite(){$('favBtn').textContent=favorite?'♥':'♡';$('favCount').textContent='❤️ '+(favorite?'1':'0');$('favEmpty').classList.toggle('hide',favorite);$('favSaved').classList.toggle('hide',!favorite)}
+function searchContent(q){const v=q.trim();$('clearSearch').style.display=v?'block':'none';const r=$('searchResults');if(!v){r.innerHTML='';return}const en=lang==='en';const items=en?['Trending','Popular','Latest','Viral','News','Funny','Sports','Music','Tech','Gaming','Food','Travel','Lifestyle','Education']:['ট্রেন্ডিং','জনপ্রিয়','লেটেস্ট','ভাইরাল','নিউজ','ফানি','স্পোর্টস','মিউজিক','টেক','গেমিং','ফুড','ট্রাভেল','লাইফস্টাইল','শিক্ষা'];const hits=items.filter(x=>x.toLowerCase().includes(v.toLowerCase()));r.innerHTML=hits.length?`<div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:7px;margin-top:6px;box-shadow:var(--shadow)">${hits.map(x=>`<div style="padding:8px;border-radius:9px;font-size:11px" onclick="showToast('${x}');clearSearch()">${x}</div>`).join('')}</div>`:`<div style="padding:9px;color:var(--muted);font-size:11px">${en?'No results':'কোনো ফল পাওয়া যায়নি।'}</div>`}
+function clearSearch(){$('searchInput').value='';$('clearSearch').style.display='none';$('searchResults').innerHTML=''}
+function waitForMonetag(ms=10000){return new Promise((resolve,reject)=>{const start=Date.now();(function check(){if(typeof window['show_'+ZONE]==='function')return resolve(window['show_'+ZONE]);if(Date.now()-start>ms)return reject(new Error('Monetag SDK not ready'));setTimeout(check,150)})()})}
+function ymid(){return 'moho_'+Date.now()+'_'+Math.random().toString(36).slice(2,9)}
+async function startUnlock(){if(watched>=TOTAL_ADS)return;const b=$('unlockBtn');b.disabled=true;$('progress').style.display='block';try{const show=await waitForMonetag();const result=await show({type:'end',ymid:ymid(),requestVar:'unlock_ad',catchIfNoFeed:true});watched++;$('progressText').textContent=(lang==='en'?'Ads: ':'বিজ্ঞাপন: ')+watched+' / '+TOTAL_ADS;$('bar').style.width=(watched/TOTAL_ADS*100)+'%';if(watched>=TOTAL_ADS){$('status').className='status ok';$('status').textContent=lang==='en'?'🎉 Ads completed. Backend verification will unlock the real video.':'🎉 সব বিজ্ঞাপন সম্পূর্ণ হয়েছে। Backend verification-এর পর আসল ভিডিও আনলক হবে।';b.textContent=lang==='en'?'▶️ Watch video':'▶️ ভিডিও দেখুন'}else{b.disabled=false;b.textContent=lang==='en'?'▶️ Watch next ad':'▶️ পরের বিজ্ঞাপন দেখুন'}}catch(e){$('status').className='status err';$('status').textContent=(lang==='en'?'⚠️ Ad was not completed. ':'⚠️ বিজ্ঞাপন সম্পূর্ণ হয়নি। ')+(e.message||'');b.disabled=false;b.textContent=lang==='en'?'🔓 Watch ads to unlock':'🔓 বিজ্ঞাপন দেখে ভিডিও আনলক করুন'}}
+async function startLatestUnlock(){const b=$('latestUnlock');b.disabled=true;try{const show=await waitForMonetag();await show({type:'end',ymid:ymid(),requestVar:'latest_unlock',catchIfNoFeed:true});$('latestStatus').className='status ok';$('latestStatus').textContent=lang==='en'?'🎉 Ad completed. Backend verification will unlock the selected video.':'🎉 বিজ্ঞাপন সম্পূর্ণ হয়েছে। Backend verification-এর পর নির্বাচিত ভিডিও আনলক হবে।';b.textContent=lang==='en'?'▶️ Watch video':'▶️ ভিডিও দেখুন'}catch(e){$('latestStatus').className='status err';$('latestStatus').textContent=(lang==='en'?'⚠️ ':'⚠️ ')+(e.message||'Ad failed');b.disabled=false}}
+function updateVerificationUI(){
+ const en=lang==='en';
+ if(hasAccount){
+   $('verify').innerHTML=en?'Verification: <span class="verified-badge">✓ VERIFIED</span>':'ভেরিফিকেশন: <span class="verified-badge">✓ VERIFIED</span>';
+ }else{
+   $('verify').innerHTML=en?'Verification: <b style="color:#d02b2b">NO</b> • <span style="color:#635bff;font-weight:900">KYC করুন</span>':'ভেরিফিকেশন: <b style="color:#d02b2b">NO</b> • <span style="color:#635bff;font-weight:900">KYC করুন</span>';
+ }
+}
+function loadTelegramUser(){const u=window.Telegram&&Telegram.WebApp&&Telegram.WebApp.initDataUnsafe&&Telegram.WebApp.initDataUnsafe.user;if(u){$('profileName').textContent=([u.first_name,u.last_name].filter(Boolean).join(' ')||u.username||'Telegram User');$('avatar').textContent=(u.first_name||'T').charAt(0).toUpperCase()}updateVerificationUI()}
+function loginTelegram(){createTelegramAccount()}function createTelegramAccount(){const u=window.Telegram&&Telegram.WebApp&&Telegram.WebApp.initDataUnsafe&&Telegram.WebApp.initDataUnsafe.user;if(u){hasAccount=true;localStorage.setItem('mohoAccount','1');closeAccountDialog();loadTelegramUser();applyLang();showToast(lang==='en'?'✅ Telegram account created':'✅ Telegram একাউন্ট তৈরি হয়েছে')}else showToast(lang==='en'?'Open this app inside Telegram to create your account.':'একাউন্ট তৈরি করতে Telegram-এর ভিতর থেকে অ্যাপটি খুলুন।')}function openAccountDialog(){$('accountModal').classList.add('open')}function closeAccountDialog(){$('accountModal').classList.remove('open')}function openPhone(){$('phoneModal').classList.add('open')};function closePhone(){$('phoneModal').classList.remove('open')};function requestPhone(){const p=$('phoneInput').value.trim();if(!p){showToast(lang==='en'?'Enter your phone number.':'ফোন নম্বর দিন।');return}closePhone();hasAccount=true;localStorage.setItem('mohoAccount','1');closeAccountDialog();applyLang();showToast(lang==='en'?'📱 Phone setup started. Backend OTP will verify it.':'📱 ফোন একাউন্ট তৈরির ধাপ শুরু হয়েছে। Backend OTP দিয়ে Verify হবে।')}
+function balance(){showToast(lang==='en'?'💰 Current balance: 0':'💰 বর্তমান ব্যালেন্স: ০')};function settings(){showToast(lang==='en'?'⚙️ Settings will be connected to the Admin Panel.':'⚙️ সেটিংস Admin Panel-এর সাথে যুক্ত হবে।')};function logout(){showToast(lang==='en'?'Telegram session is controlled by Telegram.':'Telegram session Telegram-এর নিয়ন্ত্রণে।')};function notify(){showToast(lang==='en'?'🔔 No new notifications':'🔔 নতুন কোনো নোটিফিকেশন নেই')}
+function showToast(t){const x=$('langToast');x.textContent=t;x.style.display='block';clearTimeout(window._toast);window._toast=setTimeout(()=>x.style.display='none',1300)}
+function setup(){if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}applyLang();renderFavorite();renderSlider();renderAll();setupSwipe();loadTelegramUser()}
+setup();
+</script></body></html>
